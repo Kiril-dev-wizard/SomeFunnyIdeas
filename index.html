@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кирилл — астролог и мастер ритуалов</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <header class="hero" id="top">
+        <div class="hero__overlay"></div>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Переключить тему" aria-pressed="false">
+            <span class="theme-toggle__icon" aria-hidden="true"></span>
+            <span class="theme-toggle__label">Светлая тема</span>
+        </button>
+        <div class="container hero__content">
+            <p class="hero__tag">Астролог &middot; Рунолог</p>
+            <h1 class="hero__title">Кирилл — ваш проводник к магии, ясности и балансу</h1>
+            <p class="hero__subtitle">Помогаю выстроить жизненную стратегию, ускорить получение инсайтов и бережно сопровождаю в преобразовании любой сферы через руны, астрологию и авторские ритуалы.</p>
+            <a href="#services" class="btn btn--primary">Выбрать услугу</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="section" id="bio">
+            <div class="container section__grid">
+                <div>
+                    <h2 class="section__title">Биография и подход</h2>
+                    <p>Меня зовут Кирилл. В магии и астрологии уже 3 года. Решаю свои жизненные задачи с помощью магии, строю на каждый месяц план, улучшаю отношения, развиваю себя в каждой сфере с помощью ритуалов намного быстрее — ускоряю получение инсайтов и результатов. Выстроил сбалансированную систему работы: руны + астрология. Руны — для влияния на жизнь, события и внутренние процессы. Астрология — для построения плана по каждой сфере жизни на годы вперёд. Это помогает держать под контролем всё, что происходит, максимально удачно использовать каждый период времени и при этом чувствовать себя хорошо.</p>
+                </div>
+                <div class="bio__card">
+                    <h3>Чем я занимаюсь</h3>
+                    <ul>
+                        <li>Глубокий разбор натальных карт</li>
+                        <li>Построение помесячных и годовых стратегий</li>
+                        <li>Ритуалы и энергетические практики на рунах под запрос</li>
+                    </ul>
+                    <p class="bio__note">Каждый шаг выстраиваю деликатно и экологично, с уважением к свободе воли и личной скорости трансформации.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--alt" id="services">
+            <div class="container">
+                <h2 class="section__title section__title--center">Услуги</h2>
+                <div class="service service--highlight" id="natal">
+                    <div class="service__info">
+                        <h3>Разбор натальной карты</h3>
+                        <p>Базовый сеанс — глубокий анализ личностных качеств, сильных сторон, жизненных задач и точек роста. Вы получите рекомендации по гармонизации энергии и практичные шаги, которые помогут приблизиться к желаемой жизни.</p>
+                        <div class="price-tag">5 900 ₽</div>
+                    </div>
+                    <div class="service__extras">
+                        <h4>Добавьте дополнительные блоки разбора</h4>
+                        <p class="service__extras-hint">Отметьте интересующие направления — я подготовлю расширенную консультацию.</p>
+                        <form id="natal-form" class="extras-form">
+                            <label class="extras-form__option">
+                                <input type="checkbox" name="extra" value="Магический профиль" data-price="2500">
+                                <span>
+                                    <strong>Магический профиль</strong>
+                                    <small>Откроем дополнительные дары души и разберём, какие каналы помощи доступны сейчас и как их усилить.</small>
+                                </span>
+                                <span class="extras-form__price">+ 2 500 ₽</span>
+                            </label>
+                            <label class="extras-form__option">
+                                <input type="checkbox" name="extra" value="Синастрия" data-price="3200">
+                                <span>
+                                    <strong>Синастрия</strong>
+                                    <small>Анализ любовных и партнёрских отношений, зоны притяжения и точки напряжения.</small>
+                                </span>
+                                <span class="extras-form__price">+ 3 200 ₽</span>
+                            </label>
+                            <label class="extras-form__option">
+                                <input type="checkbox" name="extra" value="Профориентация" data-price="2800">
+                                <span>
+                                    <strong>Профориентация</strong>
+                                    <small>Определим идеальные сферы деятельности и сценарии карьерного роста по карте.</small>
+                                </span>
+                                <span class="extras-form__price">+ 2 800 ₽</span>
+                            </label>
+                        </form>
+                        <div class="extras-summary" aria-live="polite">
+                            <p class="extras-summary__title">Итоговая консультация</p>
+                            <p class="extras-summary__list" id="extras-list">Базовый разбор натальной карты</p>
+                            <p class="extras-summary__total">Итого: <span id="extras-total">5 900 ₽</span></p>
+                            <a class="btn btn--secondary" href="#contact">Записаться</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service" id="forecast">
+                    <div class="service__info">
+                        <h3>Прогноз на год</h3>
+                        <p>Персональный план на 12 месяцев с учётом транзитов, прогрессий и ваших целей. Получите рекомендации по ключевым датам, направлениям развития и точкам, где стоит проявить особое внимание.</p>
+                        <div class="price-tag">4 500 ₽</div>
+                    </div>
+                    <div class="service__details">
+                        <ul>
+                            <li>Прозрачная карта периодов для планирования проектов</li>
+                            <li>Подсказки по отношениям, финансам и личной эффективности</li>
+                            <li>Поддержка в течение месяца после консультации</li>
+                        </ul>
+                        <a class="btn btn--outline" href="#contact">Получить прогноз</a>
+                    </div>
+                </div>
+
+                <div class="service" id="rituals">
+                    <div class="service__info">
+                        <h3>Ритуалы на заказ</h3>
+                        <p>Индивидуальные энергетические практики, основанные на вашей карте и личном запросе. Работаю мягко и экологично, акцентируя внимание на вашей силе и свободе выбора.</p>
+                    </div>
+                    <div class="service__details">
+                        <div class="rituals-grid">
+                            <article class="ritual-card">
+                                <h4>Ускорение кармических уроков</h4>
+                                <p>Помогаю пройти важные уроки осознанно, чтобы быстрее перейти к новому этапу жизни.</p>
+                            </article>
+                            <article class="ritual-card">
+                                <h4>Чистка</h4>
+                                <p>Мягкое очищение от чужеродных влияний, восстановление энергетического баланса и защитных границ.</p>
+                            </article>
+                            <article class="ritual-card">
+                                <h4>Подогрев чувств в паре</h4>
+                                <p>Работаем с энергетикой отношений, чтобы вернуть тепло, внимание и взаимный интерес.</p>
+                            </article>
+                        </div>
+                        <p class="service__note">Каждый ритуал подбирается индивидуально после предварительного общения. Стоимость формируется под задачу.</p>
+                        <a class="btn btn--outline" href="#contact">Обсудить запрос</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="testimonials">
+            <div class="container">
+                <h2 class="section__title section__title--center">Отзывы клиентов</h2>
+                <div class="testimonials">
+                    <blockquote>
+                        <p>«После разбора натальной карты у Алины у меня появилось ощущение ясности и поддержки. Очень бережное общение и конкретные рекомендации!»</p>
+                        <cite>— Марина</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>«Годовой прогноз оказался невероятно точным. Теперь планирую проекты с учётом космических подсказок и ощущаю уверенность.»</p>
+                        <cite>— Анастасия</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>«Ритуал чистки помог избавиться от тяжести и вернуть лёгкость в отношениях с близкими. Благодарю за внимательность и заботу.»</p>
+                        <cite>— Олег</cite>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--accent" id="contact">
+            <div class="container contact">
+                <div>
+                    <h2 class="section__title">Запись на консультацию</h2>
+                    <p>Оставьте заявку, и я свяжусь с вами, чтобы обсудить запрос и подобрать оптимальное время встречи.</p>
+                </div>
+                <form class="contact__form">
+                    <label>
+                        Имя
+                        <input type="text" name="name" placeholder="Ваше имя" required>
+                    </label>
+                    <label>
+                        Контакт для связи
+                        <input type="text" name="contact" placeholder="Telegram или телефон" required>
+                    </label>
+                    <label>
+                        Запрос
+                        <textarea name="message" rows="4" placeholder="Кратко опишите, что хотите проработать"></textarea>
+                    </label>
+                    <button type="submit" class="btn btn--primary">Отправить заявку</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer__content">
+            <a href="#top" class="footer__logo">Кирилл • Руны и Астрология</a>
+            <p>© 2024. Индивидуальные консультации и ритуальные практики. Все права защищены.</p>
+            <div class="footer__socials">
+                <a href="https://t.me/" aria-label="Telegram">Telegram</a>
+                <a href="https://instagram.com/" aria-label="Instagram">Instagram</a>
+                <a href="mailto:hello@example.com" aria-label="Email">hello@example.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>
