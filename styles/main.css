@@ -177,12 +177,6 @@ img {
     place-items: center;
 }
 
-.hero__texture {
-    max-width: 340px;
-    mix-blend-mode: luminosity;
-    opacity: 0.75;
-}
-
 .hero__orb {
     position: relative;
     width: clamp(220px, 35vw, 320px);
@@ -361,6 +355,23 @@ img {
 .price-tag {
     font-weight: 600;
     color: var(--accent-strong);
+}
+
+.price-tag--discount {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+}
+
+.price-tag__old {
+    text-decoration: line-through;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.price-tag__new {
+    color: var(--accent-strong);
+    font-weight: 700;
 }
 
 .service-card p {
