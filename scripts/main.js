@@ -74,11 +74,12 @@ const translations = {
                 summaryBase: 'Базовый разбор натальной карты',
                 summaryWithExtras: 'Базовый разбор + {{extras}}',
                 summaryTotal: 'Итого: <span id="extras-total"></span>',
+                bonus: 'Бонус: консультация на рунах (1 час) — смотрим лучшие и худшие сценарии развития событий.',
                 cta: 'Записаться',
                 details: `
                     <div class="detail-grid">
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">🌕</div>
+                            <div class="detail-block__icon detail-block__icon--personality" aria-hidden="true" data-icon="01"></div>
                             <div>
                                 <h4>Разбор Личности — «Твоя внутренняя инструкция»</h4>
                                 <p class="detail-block__tagline">Глубокий разбор психики, эмоций, поведения и истинного пути.</p>
@@ -97,7 +98,7 @@ const translations = {
                             </div>
                         </article>
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">💸</div>
+                            <div class="detail-block__icon detail-block__icon--wealth" aria-hidden="true" data-icon="02"></div>
                             <div>
                                 <h4>Разбор Денег и Реализации — «Как тебе зарабатывать больше»</h4>
                                 <p class="detail-block__tagline">Анализ того, как ты устроен в деньгах, силе и статусе.</p>
@@ -115,7 +116,7 @@ const translations = {
                             </div>
                         </article>
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">🩺</div>
+                            <div class="detail-block__icon detail-block__icon--health" aria-hidden="true" data-icon="03"></div>
                             <div>
                                 <h4>Разбор Здоровья и Энергии — «Как работает твоё тело»</h4>
                                 <p class="detail-block__tagline">Астрологическая диагностика тела, психосоматики и энергии.</p>
@@ -132,7 +133,7 @@ const translations = {
                             </div>
                         </article>
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">🔮</div>
+                            <div class="detail-block__icon detail-block__icon--magic" aria-hidden="true" data-icon="04"></div>
                             <div>
                                 <h4>Разбор Магии и Интуиции — «Твои способности и каналы силы»</h4>
                                 <p class="detail-block__tagline">Диагностика интуитивных и магических талантов.</p>
@@ -149,7 +150,7 @@ const translations = {
                             </div>
                         </article>
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">❤️</div>
+                            <div class="detail-block__icon detail-block__icon--relationship" aria-hidden="true" data-icon="05"></div>
                             <div>
                                 <h4>Разбор Отношений — «Почему между вами всё происходит именно так»</h4>
                                 <p class="detail-block__tagline">Глубокий анализ динамики, триггеров и совместимости пары.</p>
@@ -166,7 +167,7 @@ const translations = {
                             </div>
                         </article>
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">💗</div>
+                            <div class="detail-block__icon detail-block__icon--solo" aria-hidden="true" data-icon="06"></div>
                             <div>
                                 <h4>Разбор Отношений для тех, кто без партнёра</h4>
                                 <p class="detail-block__tagline">«Какой человек тебе подходит, и почему до сих пор не сложилось»</p>
@@ -198,57 +199,60 @@ const translations = {
                 ],
                 addon: {
                     title: 'Прогрессивная синастрия',
-                    description: 'Глубокий анализ пары на ближайший год: динамика, периоды гармонии, напряжения и план усиления отношений.',
+                    description: 'Дополнительный модуль: годовой разбор отношений — динамика, триггеры, периоды гармонии и напряжения, план укрепления связи.',
                     price: '+20&nbsp;$'
                 },
+                bonus: 'Бонус: консультация на рунах (1 час) — фиксируем оптимальные и рискованные сценарии года.',
                 details: `
                     <div class="detail-grid detail-grid--single">
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">⭐</div>
+                            <div class="detail-block__icon detail-block__icon--year" aria-hidden="true" data-icon="YR"></div>
                             <div>
                                 <h4>Персональный прогноз на год — «Проживи следующий год осознанно, уверенно и в правильное время»</h4>
                                 <p class="detail-block__label">Что это:</p>
-                                <p>Точный астрологический прогноз на 12 месяцев: ключевые темы, взлёты, спады, риски и лучшие даты для действий. Это твой навигатор, который показывает, что ждёт впереди и как управлять процессами.</p>
+                                <p>Точный персональный прогноз на 12 месяцев: ключевые периоды, взлёты, спады, риски, возможности и идеальные даты для действий.</p>
+                                <p>Это твой навигатор — он показывает, что тебя ждёт, как управлять процессами и когда делать правильные шаги.</p>
                                 <p class="detail-block__label">Что ты получишь:</p>
                                 <ul>
-                                    <li>Понимание главной темы года и почему она раскрывается сейчас.</li>
-                                    <li>Карту энергии каждого месяца: когда быть продуктивным, а когда восстановиться.</li>
-                                    <li>Лучшие периоды для денег и карьеры, точки запуска и осторожности.</li>
-                                    <li>Прогноз отношений: где сближение, где напряжение и как сохранить тепло.</li>
-                                    <li>Точные «окна возможностей», когда одно действие даёт максимум результата.</li>
-                                    <li>Периоды риска, когда важно не принимать резких решений.</li>
-                                    <li>План по здоровью и энергии: когда тело просит отдыха и когда усиливать форму.</li>
-                                    <li>Понимание внутренних фаз: где завершается старая версия и начинается новая.</li>
-                                    <li>Разбор приоритетов и стратегию на 12 месяцев без хаоса.</li>
+                                    <li><strong>Понимание главной темы года.</strong> Разберёшь, что требует жизнь и почему это важно сейчас.</li>
+                                    <li><strong>Карту энергии каждого месяца.</strong> Поймёшь, когда ускоряться, а когда беречь себя.</li>
+                                    <li><strong>Лучшие периоды для денег и карьеры.</strong> Заранее увидишь окна для запусков, переходов и роста.</li>
+                                    <li><strong>Прогноз отношений.</strong> Где будет сближение, где напряжение и что поможет сохранить тепло.</li>
+                                    <li><strong>Точные окна возможностей.</strong> Отследишь моменты, когда одно действие даёт огромный результат.</li>
+                                    <li><strong>Карту рисков.</strong> Заранее узнаешь периоды повышенных эмоций, чтобы не принимать резких решений.</li>
+                                    <li><strong>План по здоровью и энергии.</strong> Когда телу нужен отдых, а когда можно наращивать нагрузку.</li>
+                                    <li><strong>Понимание внутренних фаз.</strong> Где завершается старая версия тебя и где стартует новая.</li>
+                                    <li><strong>Расстановку приоритетов.</strong> Что действительно важно в твоём году: отношения, переезд, деньги, реализация, внутренний рост.</li>
+                                    <li><strong>Стратегию на 12 месяцев.</strong> Чёткий план без хаоса и угадываний.</li>
                                 </ul>
                                 <p class="detail-block__label">Для кого этот прогноз:</p>
                                 <ul>
                                     <li>Для тех, кто устал жить «как получится» и хочет ясности.</li>
-                                    <li>Для тех, кто хочет попадать в правильный тайминг.</li>
-                                    <li>Для тех, кому нужна опора и предсказуемость.</li>
-                                    <li>Для тех, кто готов прожить год осознанно и без самосаботажа.</li>
-                                    <li>Для тех, кто хочет использовать возможности, а не упускать их.</li>
-                                    <li>Для тех, кто хочет заранее знать зоны роста и осторожности.</li>
+                                    <li>Для тех, кто часто ошибался в тайминге и хочет делать шаги вовремя.</li>
+                                    <li>Для тех, кому нужна опора, предсказуемость и план.</li>
+                                    <li>Для тех, кто готов прожить год осознанно, без хаоса и самосаботажа.</li>
+                                    <li>Для тех, кто хочет использовать свои возможности, а не упускать их.</li>
+                                    <li>Для тех, кто хочет заранее видеть зоны роста и осторожности.</li>
                                 </ul>
                             </div>
                         </article>
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">💞</div>
+                            <div class="detail-block__icon detail-block__icon--synastry" aria-hidden="true" data-icon="SY"></div>
                             <div>
-                                <h4>Прогрессивная синастрия — сопровождение пары</h4>
+                                <h4>Прогрессивная синастрия — «Как прожить отношения спокойно и по-взрослому»</h4>
                                 <p class="detail-block__label">Что это:</p>
-                                <p>Глубокий анализ вашей пары на ближайший год: динамика, триггеры, точки сближения и роста.</p>
+                                <p>Глубокий анализ вашей пары на ближайший год: динамика, триггеры, точки сближения и роста — с чётким планом, как сделать отношения зрелыми и тёплыми.</p>
                                 <p class="detail-block__label">Что ты получишь:</p>
                                 <ul>
                                     <li>Почему между вами всё происходит именно так.</li>
                                     <li>Что партнёр чувствует, но не говорит.</li>
                                     <li>Ваши триггеры и как не заходить в конфликты.</li>
                                     <li>Что вас сближает, а что разрушает.</li>
-                                    <li>Периоды гармонии и напряжения в ближайшие 12 месяцев.</li>
+                                    <li>Периоды гармонии и напряжения в ближайший год.</li>
                                     <li>План, как укрепить отношения и вернуть тепло.</li>
                                 </ul>
                                 <p class="detail-block__label">Для кого:</p>
-                                <p>Для тех, кто хочет меньше драм, больше честности и взрослой стабильности.</p>
+                                <p>Для тех, кто хочет меньше драм, больше честности, поддержки и стабильности в союзе.</p>
                             </div>
                         </article>
                     </div>
@@ -268,7 +272,7 @@ const translations = {
                 details: `
                     <div class="detail-grid detail-grid--single">
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">🕯️</div>
+                            <div class="detail-block__icon detail-block__icon--ritual" aria-hidden="true" data-icon="RT"></div>
                             <div>
                                 <h4>Как проходит ритуал</h4>
                                 <p>Мы встречаемся онлайн, формулируем цель и выбираем инструменты — руны, свечи, работа с энергиями стихий.</p>
@@ -304,7 +308,7 @@ const translations = {
                 details: `
                     <div class="detail-grid detail-grid--single">
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">⚡</div>
+                            <div class="detail-block__icon detail-block__icon--runes" aria-hidden="true" data-icon="RN"></div>
                             <div>
                                 <h4>Что разбираем на гадании</h4>
                                 <p>Руны показывают корень ситуации и лучший сценарий действий. На консультации можно задавать несколько вопросов подряд.</p>
@@ -343,8 +347,16 @@ const translations = {
         contact: {
             title: 'Запись и связь',
             description: 'Опишите запрос и желаемый формат работы. Я отвечу в течение суток, уточню детали и предложу ближайшие даты.',
-            telegram: '@your_astrologist',
-            email: 'hello@example.com'
+            labels: {
+                telegram: 'Telegram',
+                email: 'E-mail',
+                instagram: 'Instagram',
+                tiktok: 'TikTok'
+            },
+            telegram: '@kim0n',
+            email: 'kaminskyikiril5@gmail.com',
+            instagram: '@kimon_wizard',
+            tiktok: '@kim0nn'
         },
         form: {
             ariaLabel: 'Форма обратной связи',
@@ -356,13 +368,15 @@ const translations = {
             messagePlaceholder: 'Расскажите о цели, с которой приходите',
             submit: 'Отправить заявку',
             success: 'Заявка отправлена! Свяжусь с вами в ближайшее время.',
-            error: 'Не удалось отправить заявку. Напишите в Telegram или попробуйте ещё раз.'
+            error: 'Не удалось отправить заявку. Напишите в Telegram или попробуйте ещё раз.',
+            modalClose: 'Закрыть сообщение'
         },
         footer: {
             logo: 'Кирилл • Астрология & Руны',
             note: '© 2024. Индивидуальные консультации, ритуалы и сопровождение. Все права защищены.',
             telegram: 'Telegram',
             instagram: 'Instagram',
+            tiktok: 'TikTok',
             email: 'Email'
         }
     },
@@ -433,11 +447,12 @@ const translations = {
                 summaryBase: 'Базовий розбір натальної карти',
                 summaryWithExtras: 'Базовий розбір + {{extras}}',
                 summaryTotal: 'Разом: <span id="extras-total"></span>',
+                bonus: 'Бонус: годинна консультація на рунах — дивимося найкращі й найризикованіші сценарії.',
                 cta: 'Записатися',
                 details: `
                     <div class="detail-grid">
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">🌕</div>
+                            <div class="detail-block__icon detail-block__icon--personality" aria-hidden="true" data-icon="01"></div>
                             <div>
                                 <h4>Розбір Особистості — «Твоя внутрішня інструкція»</h4>
                                 <p class="detail-block__tagline">Глибокий аналіз психіки, емоцій, реакцій і справжнього шляху.</p>
@@ -456,7 +471,7 @@ const translations = {
                             </div>
                         </article>
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">💸</div>
+                            <div class="detail-block__icon detail-block__icon--wealth" aria-hidden="true" data-icon="02"></div>
                             <div>
                                 <h4>Розбір Грошей і Реалізації — «Як тобі заробляти більше»</h4>
                                 <p class="detail-block__tagline">Аналіз твоєї фінансової природи, сили, статусу та успіху.</p>
@@ -474,7 +489,7 @@ const translations = {
                             </div>
                         </article>
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">🩺</div>
+                            <div class="detail-block__icon detail-block__icon--health" aria-hidden="true" data-icon="03"></div>
                             <div>
                                 <h4>Розбір Здоровʼя та Енергії — «Як працює твоє тіло»</h4>
                                 <p class="detail-block__tagline">Астрологічна діагностика тіла, психосоматики й енергетики.</p>
@@ -491,7 +506,7 @@ const translations = {
                             </div>
                         </article>
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">🔮</div>
+                            <div class="detail-block__icon detail-block__icon--magic" aria-hidden="true" data-icon="04"></div>
                             <div>
                                 <h4>Розбір Магії та Інтуїції — «Твої здібності й канали сили»</h4>
                                 <p class="detail-block__tagline">Діагностика інтуїтивних, магічних та енергетичних здібностей.</p>
@@ -508,7 +523,7 @@ const translations = {
                             </div>
                         </article>
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">❤️</div>
+                            <div class="detail-block__icon detail-block__icon--relationship" aria-hidden="true" data-icon="05"></div>
                             <div>
                                 <h4>Розбір Стосунків — «Чому між вами все відбувається саме так»</h4>
                                 <p class="detail-block__tagline">Глибокий аналіз динаміки, ролей, тригерів і сумісності.</p>
@@ -525,7 +540,7 @@ const translations = {
                             </div>
                         </article>
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">💗</div>
+                            <div class="detail-block__icon detail-block__icon--solo" aria-hidden="true" data-icon="06"></div>
                             <div>
                                 <h4>Розбір Стосунків для тих, хто без партнера</h4>
                                 <p class="detail-block__tagline">«Яка людина тобі підходить і чому досі не склалося»</p>
@@ -557,13 +572,14 @@ const translations = {
                 ],
                 addon: {
                     title: 'Прогресивна синастрія',
-                    description: 'Глибокий розбір вашої пари на рік: динаміка, гармонійні й напружені періоди, стратегія тепла й підтримки.',
+                    description: 'Додатковий модуль: розбір стосунків на рік — динаміка, тригери, періоди гармонії й напруги та план зміцнення пари.',
                     price: '+20&nbsp;$'
                 },
+                bonus: 'Бонус: годинна консультація на рунах — фіксуємо найкращі та найскладніші сценарії року.',
                 details: `
                     <div class="detail-grid detail-grid--single">
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">⭐</div>
+                            <div class="detail-block__icon detail-block__icon--year" aria-hidden="true" data-icon="YR"></div>
                             <div>
                                 <h4>Персональний прогноз на рік — «Проживи наступний рік усвідомлено і в правильний час»</h4>
                                 <p class="detail-block__label">Що це:</p>
@@ -592,7 +608,7 @@ const translations = {
                             </div>
                         </article>
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">💞</div>
+                            <div class="detail-block__icon detail-block__icon--synastry" aria-hidden="true" data-icon="SY"></div>
                             <div>
                                 <h4>Прогресивна синастрія — супровід пари</h4>
                                 <p class="detail-block__label">Що це:</p>
@@ -627,7 +643,7 @@ const translations = {
                 details: `
                     <div class="detail-grid detail-grid--single">
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">🕯️</div>
+                            <div class="detail-block__icon detail-block__icon--ritual" aria-hidden="true" data-icon="RT"></div>
                             <div>
                                 <h4>Як проходить ритуал</h4>
                                 <p>На зустрічі формулюємо ціль, підбираємо інструменти й час. Працюю з рунами, вогнем, травами та енергією стихій.</p>
@@ -663,7 +679,7 @@ const translations = {
                 details: `
                     <div class="detail-grid detail-grid--single">
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">⚡</div>
+                            <div class="detail-block__icon detail-block__icon--runes" aria-hidden="true" data-icon="RN"></div>
                             <div>
                                 <h4>Що розбираємо на гаданні</h4>
                                 <p>Руни показують корінь ситуації та найкращий сценарій дій. Під час сесії можна ставити кілька запитань поспіль.</p>
@@ -702,8 +718,16 @@ const translations = {
         contact: {
             title: 'Запис та зв’язок',
             description: "Опишіть запит і бажаний формат роботи. Я відповім протягом доби, уточню деталі та запропоную найближчі дати.",
-            telegram: '@your_astrologist',
-            email: 'hello@example.com'
+            labels: {
+                telegram: 'Telegram',
+                email: 'Електронна пошта',
+                instagram: 'Instagram',
+                tiktok: 'TikTok'
+            },
+            telegram: '@kim0n',
+            email: 'kaminskyikiril5@gmail.com',
+            instagram: '@kimon_wizard',
+            tiktok: '@kim0nn'
         },
         form: {
             ariaLabel: 'Форма зворотного зв’язку',
@@ -715,13 +739,15 @@ const translations = {
             messagePlaceholder: 'Розкажіть про мету, з якою звертаєтеся',
             submit: 'Надіслати заявку',
             success: 'Заявка надіслана! Зв’яжуся з вами найближчим часом.',
-            error: 'Не вдалося надіслати. Напишіть у Telegram або спробуйте ще раз.'
+            error: 'Не вдалося надіслати. Напишіть у Telegram або спробуйте ще раз.',
+            modalClose: 'Закрити повідомлення'
         },
         footer: {
             logo: 'Кирило • Астрологія & Руни',
             note: '© 2024. Індивідуальні консультації, ритуали та супровід. Усі права захищені.',
             telegram: 'Telegram',
             instagram: 'Instagram',
+            tiktok: 'TikTok',
             email: 'Email'
         }
     },
@@ -792,11 +818,12 @@ const translations = {
                 summaryBase: 'Bazowa analiza kosmogramu',
                 summaryWithExtras: 'Analiza bazowa + {{extras}}',
                 summaryTotal: 'Razem: <span id="extras-total"></span>',
+                bonus: 'Bonus: godzinna konsultacja runiczna — omawiamy najlepsze i najtrudniejsze scenariusze.',
                 cta: 'Zapisz się',
                 details: `
                     <div class="detail-grid">
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">🌕</div>
+                            <div class="detail-block__icon detail-block__icon--personality" aria-hidden="true" data-icon="01"></div>
                             <div>
                                 <h4>Analiza Osobowości — „Twoja wewnętrzna instrukcja”</h4>
                                 <p class="detail-block__tagline">Dogłębne spojrzenie na psychikę, emocje, reakcje i prawdziwą drogę.</p>
@@ -815,7 +842,7 @@ const translations = {
                             </div>
                         </article>
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">💸</div>
+                            <div class="detail-block__icon detail-block__icon--wealth" aria-hidden="true" data-icon="02"></div>
                             <div>
                                 <h4>Analiza Pieniędzy i Realizacji — „Jak zarabiać więcej”</h4>
                                 <p class="detail-block__tagline">Diagnoza Twojej natury w sferze finansów, siły i statusu.</p>
@@ -833,7 +860,7 @@ const translations = {
                             </div>
                         </article>
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">🩺</div>
+                            <div class="detail-block__icon detail-block__icon--health" aria-hidden="true" data-icon="03"></div>
                             <div>
                                 <h4>Analiza Zdrowia i Energii — „Jak działa Twoje ciało”</h4>
                                 <p class="detail-block__tagline">Astrologiczna diagnostyka ciała, psychosomatyki i energii.</p>
@@ -850,7 +877,7 @@ const translations = {
                             </div>
                         </article>
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">🔮</div>
+                            <div class="detail-block__icon detail-block__icon--magic" aria-hidden="true" data-icon="04"></div>
                             <div>
                                 <h4>Analiza Magii i Intuicji — „Twoje zdolności i kanały mocy”</h4>
                                 <p class="detail-block__tagline">Diagnoza intuicyjnych i energetycznych darów.</p>
@@ -867,7 +894,7 @@ const translations = {
                             </div>
                         </article>
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">❤️</div>
+                            <div class="detail-block__icon detail-block__icon--relationship" aria-hidden="true" data-icon="05"></div>
                             <div>
                                 <h4>Analiza Relacji — „Dlaczego między Wami dzieje się właśnie tak”</h4>
                                 <p class="detail-block__tagline">Głęboka analiza dynamiki, ról, triggerów i kompatybilności.</p>
@@ -884,7 +911,7 @@ const translations = {
                             </div>
                         </article>
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">💗</div>
+                            <div class="detail-block__icon detail-block__icon--solo" aria-hidden="true" data-icon="06"></div>
                             <div>
                                 <h4>Analiza Relacji dla singli</h4>
                                 <p class="detail-block__tagline">„Jaka osoba jest dla Ciebie i dlaczego dotąd się nie udawało”</p>
@@ -916,13 +943,14 @@ const translations = {
                 ],
                 addon: {
                     title: 'Synastria progresywna',
-                    description: 'Dogłębna analiza pary na najbliższy rok: dynamika, okresy harmonii i napięcia oraz plan wzmacniania relacji.',
+                    description: 'Moduł dodatkowy: roczny przegląd relacji — dynamika, triggery, okresy harmonii i napięcia oraz plan wzmocnienia więzi.',
                     price: '+20&nbsp;$'
                 },
+                bonus: 'Bonus: godzinna konsultacja runiczna — ustalamy optymalne i ryzykowne momenty roku.',
                 details: `
                     <div class="detail-grid detail-grid--single">
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">⭐</div>
+                            <div class="detail-block__icon detail-block__icon--year" aria-hidden="true" data-icon="YR"></div>
                             <div>
                                 <h4>Prognoza roczna — „Przeżyj kolejny rok świadomie i we właściwym czasie”</h4>
                                 <p class="detail-block__label">Co to:</p>
@@ -951,7 +979,7 @@ const translations = {
                             </div>
                         </article>
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">💞</div>
+                            <div class="detail-block__icon detail-block__icon--synastry" aria-hidden="true" data-icon="SY"></div>
                             <div>
                                 <h4>Synastria progresywna — wsparcie dla pary</h4>
                                 <p class="detail-block__label">Co to:</p>
@@ -986,7 +1014,7 @@ const translations = {
                 details: `
                     <div class="detail-grid detail-grid--single">
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">🕯️</div>
+                            <div class="detail-block__icon detail-block__icon--ritual" aria-hidden="true" data-icon="RT"></div>
                             <div>
                                 <h4>Jak wygląda praca rytualna</h4>
                                 <p>Spotykamy się online, doprecyzowujemy intencję i dobieramy narzędzia: runy, świece, zioła, energie żywiołów.</p>
@@ -1022,7 +1050,7 @@ const translations = {
                 details: `
                     <div class="detail-grid detail-grid--single">
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">⚡</div>
+                            <div class="detail-block__icon detail-block__icon--runes" aria-hidden="true" data-icon="RN"></div>
                             <div>
                                 <h4>Zakres konsultacji runicznej</h4>
                                 <p>Runy pokazują źródło sytuacji i najlepszą decyzję. W trakcie możesz zadawać kolejne pytania.</p>
@@ -1061,8 +1089,16 @@ const translations = {
         contact: {
             title: 'Kontakt i zapisy',
             description: 'Opisz swój cel i preferowany format współpracy. Odpowiem w ciągu doby, doprecyzuję szczegóły i zaproponuję najbliższe terminy.',
-            telegram: '@your_astrologist',
-            email: 'hello@example.com'
+            labels: {
+                telegram: 'Telegram',
+                email: 'E-mail',
+                instagram: 'Instagram',
+                tiktok: 'TikTok'
+            },
+            telegram: '@kim0n',
+            email: 'kaminskyikiril5@gmail.com',
+            instagram: '@kimon_wizard',
+            tiktok: '@kim0nn'
         },
         form: {
             ariaLabel: 'Formularz kontaktowy',
@@ -1074,13 +1110,15 @@ const translations = {
             messagePlaceholder: 'Opisz cel, z którym się zgłaszasz',
             submit: 'Wyślij zgłoszenie',
             success: 'Wiadomość wysłana! Skontaktuję się wkrótce.',
-            error: 'Nie udało się wysłać. Napisz na Telegramie lub spróbuj ponownie.'
+            error: 'Nie udało się wysłać. Napisz na Telegramie lub spróbuj ponownie.',
+            modalClose: 'Zamknij powiadomienie'
         },
         footer: {
             logo: 'Kyryl • Astrologia & Runy',
             note: '© 2024. Indywidualne konsultacje, rytuały i wsparcie. Wszelkie prawa zastrzeżone.',
             telegram: 'Telegram',
             instagram: 'Instagram',
+            tiktok: 'TikTok',
             email: 'Email'
         }
     },
@@ -1151,11 +1189,12 @@ const translations = {
                 summaryBase: 'Core natal chart reading',
                 summaryWithExtras: 'Core reading + {{extras}}',
                 summaryTotal: 'Total: <span id="extras-total"></span>',
+                bonus: 'Bonus: 1-hour rune consultation to review the best and worst-case scenarios.',
                 cta: 'Book now',
                 details: `
                     <div class="detail-grid">
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">🌕</div>
+                            <div class="detail-block__icon detail-block__icon--personality" aria-hidden="true" data-icon="01"></div>
                             <div>
                                 <h4>Personality Reading — “Your inner manual”</h4>
                                 <p class="detail-block__tagline">A deep dive into psyche, emotions, reactions, and your true path.</p>
@@ -1174,7 +1213,7 @@ const translations = {
                             </div>
                         </article>
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">💸</div>
+                            <div class="detail-block__icon detail-block__icon--wealth" aria-hidden="true" data-icon="02"></div>
                             <div>
                                 <h4>Money & Career Reading — “How you earn more”</h4>
                                 <p class="detail-block__tagline">Analysis of your financial nature, ambition, and success pattern.</p>
@@ -1192,7 +1231,7 @@ const translations = {
                             </div>
                         </article>
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">🩺</div>
+                            <div class="detail-block__icon detail-block__icon--health" aria-hidden="true" data-icon="03"></div>
                             <div>
                                 <h4>Health & Energy Reading — “How your body works”</h4>
                                 <p class="detail-block__tagline">Astrological diagnostics of body, psychosomatics, and vitality.</p>
@@ -1209,7 +1248,7 @@ const translations = {
                             </div>
                         </article>
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">🔮</div>
+                            <div class="detail-block__icon detail-block__icon--magic" aria-hidden="true" data-icon="04"></div>
                             <div>
                                 <h4>Magic & Intuition Reading — “Your gifts and channels of power”</h4>
                                 <p class="detail-block__tagline">Diagnostics of intuitive, magical, and energetic abilities.</p>
@@ -1226,7 +1265,7 @@ const translations = {
                             </div>
                         </article>
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">❤️</div>
+                            <div class="detail-block__icon detail-block__icon--relationship" aria-hidden="true" data-icon="05"></div>
                             <div>
                                 <h4>Relationship Reading — “Why everything unfolds the way it does”</h4>
                                 <p class="detail-block__tagline">Deep analysis of your couple’s dynamics, roles, triggers, and compatibility.</p>
@@ -1243,7 +1282,7 @@ const translations = {
                             </div>
                         </article>
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">💗</div>
+                            <div class="detail-block__icon detail-block__icon--solo" aria-hidden="true" data-icon="06"></div>
                             <div>
                                 <h4>Relationship Reading for Singles</h4>
                                 <p class="detail-block__tagline">“Who truly fits you and why it hasn’t worked yet”</p>
@@ -1275,13 +1314,14 @@ const translations = {
                 ],
                 addon: {
                     title: 'Progressive synastry',
-                    description: 'An add-on that maps your relationship for the next 12 months: dynamics, harmony peaks, tension zones, and a plan to keep love warm.',
+                    description: 'Optional add-on: a yearly relationship map — dynamics, triggers, harmony peaks and tension, plus a plan to keep the bond strong.',
                     price: '+$20'
                 },
+                bonus: 'Bonus: 1-hour rune consultation to map the most supportive and risky timelines of the year.',
                 details: `
                     <div class="detail-grid detail-grid--single">
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">⭐</div>
+                            <div class="detail-block__icon detail-block__icon--year" aria-hidden="true" data-icon="YR"></div>
                             <div>
                                 <h4>Yearly forecast — “Live the next 12 months consciously and on time”</h4>
                                 <p class="detail-block__label">What it is:</p>
@@ -1310,7 +1350,7 @@ const translations = {
                             </div>
                         </article>
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">💞</div>
+                            <div class="detail-block__icon detail-block__icon--synastry" aria-hidden="true" data-icon="SY"></div>
                             <div>
                                 <h4>Progressive synastry — relationship deep dive</h4>
                                 <p class="detail-block__label">What it is:</p>
@@ -1345,7 +1385,7 @@ const translations = {
                 details: `
                     <div class="detail-grid detail-grid--single">
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">🕯️</div>
+                            <div class="detail-block__icon detail-block__icon--ritual" aria-hidden="true" data-icon="RT"></div>
                             <div>
                                 <h4>How the ritual unfolds</h4>
                                 <p>We meet online, define the intention, and choose the tools — runes, candles, herbs, elemental energy.</p>
@@ -1381,7 +1421,7 @@ const translations = {
                 details: `
                     <div class="detail-grid detail-grid--single">
                         <article class="detail-block">
-                            <div class="detail-block__icon" aria-hidden="true">⚡</div>
+                            <div class="detail-block__icon detail-block__icon--runes" aria-hidden="true" data-icon="RN"></div>
                             <div>
                                 <h4>What we explore</h4>
                                 <p>Runes reveal the root cause and best next move. You can ask several questions during one sitting.</p>
@@ -1420,8 +1460,16 @@ const translations = {
         contact: {
             title: 'Bookings & contact',
             description: 'Share your request and ideal format. I reply within a day, clarify details, and offer the nearest available dates.',
-            telegram: '@your_astrologist',
-            email: 'hello@example.com'
+            labels: {
+                telegram: 'Telegram',
+                email: 'E-mail',
+                instagram: 'Instagram',
+                tiktok: 'TikTok'
+            },
+            telegram: '@kim0n',
+            email: 'kaminskyikiril5@gmail.com',
+            instagram: '@kimon_wizard',
+            tiktok: '@kim0nn'
         },
         form: {
             ariaLabel: 'Contact form',
@@ -1433,13 +1481,15 @@ const translations = {
             messagePlaceholder: 'Tell me about your goal for the session',
             submit: 'Send request',
             success: 'Request sent! I will reach out shortly.',
-            error: 'Could not send. Message me on Telegram or try again.'
+            error: 'Could not send. Message me on Telegram or try again.',
+            modalClose: 'Close message'
         },
         footer: {
             logo: 'Kirill • Astrology & Runes',
             note: '© 2024. Individual consultations, rituals, and support. All rights reserved.',
             telegram: 'Telegram',
             instagram: 'Instagram',
+            tiktok: 'TikTok',
             email: 'Email'
         }
     }
@@ -1452,11 +1502,8 @@ const prefersDarkScheme = typeof window.matchMedia === 'function'
     : null;
 
 const basePrice = 80;
-const form = document.getElementById('natal-form');
-const totalEl = document.getElementById('extras-total');
-const listEl = document.getElementById('extras-list');
+const extrasForm = document.getElementById('natal-form');
 const contactForm = document.querySelector('.contact__form');
-const successMessage = document.querySelector('[data-success-message]');
 const errorMessage = document.querySelector('[data-error-message]');
 const langToggleButton = document.querySelector('[data-lang-toggle]');
 const langMenu = document.querySelector('[data-lang-menu]');
@@ -1465,6 +1512,11 @@ const currentLangIndicator = document.querySelector('[data-current-lang]');
 const langSwitcher = document.querySelector('[data-lang-switcher]');
 const localeField = document.querySelector('[data-locale-field]');
 const detailToggles = document.querySelectorAll('[data-detail-toggle]');
+const detailCloseButtons = document.querySelectorAll('[data-detail-close]');
+const formModal = document.querySelector('[data-form-modal]');
+const formModalText = document.querySelector('[data-form-modal-text]');
+const formModalClose = document.querySelector('[data-form-modal-close]');
+const formModalOverlay = document.querySelector('[data-form-modal-overlay]');
 
 function getNestedValue(object, path) {
     return path.split('.').reduce((accumulator, key) => {
@@ -1677,7 +1729,7 @@ function updateThemeControls(theme) {
         }
     }
     if (themeIcon) {
-        themeIcon.textContent = isDark ? '🌙' : '🌞';
+        themeIcon.dataset.icon = isDark ? 'moon' : 'sun';
     }
     if (themeLabel) {
         const labelText = isDark ? translate('theme.darkLabel') : translate('theme.lightLabel');
@@ -1696,9 +1748,11 @@ function getPreferredTheme() {
 }
 
 function renderSummary() {
-    if (!form) return;
-    const extras = Array.from(form.querySelectorAll('input[name="extra"]:checked'));
+    if (!extrasForm) return;
+    const extras = Array.from(extrasForm.querySelectorAll('input[name="extra"]:checked'));
     const total = extras.reduce((sum, item) => sum + Number(item.dataset.price || 0), basePrice);
+    const listEl = document.getElementById('extras-list');
+    const totalEl = document.getElementById('extras-total');
 
     if (listEl) {
         if (extras.length) {
@@ -1716,45 +1770,80 @@ function renderSummary() {
     }
 }
 
+function setDetailState(targetId, state) {
+    if (!targetId) return;
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    const toggleButton = document.querySelector(`[data-detail-target="${targetId}"]`);
+    const shouldOpen = typeof state === 'boolean' ? state : target.hidden;
+    target.hidden = !shouldOpen;
+    target.classList.toggle('is-open', shouldOpen);
+    if (toggleButton) {
+        toggleButton.setAttribute('aria-expanded', String(shouldOpen));
+        toggleButton.classList.toggle('is-hidden', shouldOpen);
+    }
+}
+
 function handleDetailToggle(button) {
     if (!button) return;
     const targetId = button.dataset.detailTarget;
     if (!targetId) return;
     const target = document.getElementById(targetId);
-    if (!target) return;
-    const isExpanded = button.getAttribute('aria-expanded') === 'true';
-    const nextState = !isExpanded;
-    button.setAttribute('aria-expanded', String(nextState));
-    target.hidden = !nextState;
-    target.classList.toggle('is-open', nextState);
+    const nextState = target ? target.hidden : true;
+    setDetailState(targetId, nextState);
 }
 
-function showFormStatus(type) {
-    const target = type === 'success' ? successMessage : errorMessage;
-    const other = type === 'success' ? errorMessage : successMessage;
-    if (other) {
-        other.classList.remove('is-visible');
-        other.setAttribute('hidden', '');
+function showInlineError() {
+    if (!errorMessage) return;
+    const errorText = translate('form.error');
+    if (errorText) {
+        errorMessage.textContent = errorText;
     }
-    if (!target) return;
-    target.hidden = false;
+    errorMessage.hidden = false;
     requestAnimationFrame(() => {
-        target.classList.add('is-visible');
+        errorMessage.classList.add('is-visible');
     });
     setTimeout(() => {
-        target?.classList.remove('is-visible');
-        target?.setAttribute('hidden', '');
+        errorMessage?.classList.remove('is-visible');
+        errorMessage?.setAttribute('hidden', '');
     }, 6000);
 }
 
-if (form) {
-    form.addEventListener('change', renderSummary);
+function hideInlineError() {
+    if (!errorMessage) return;
+    errorMessage.classList.remove('is-visible');
+    errorMessage.setAttribute('hidden', '');
+}
+
+function openFormModal() {
+    if (!formModal) return;
+    const successText = translate('form.success');
+    if (formModalText && successText) {
+        formModalText.textContent = successText;
+    }
+    formModal.hidden = false;
+    requestAnimationFrame(() => {
+        formModal.classList.add('is-visible');
+    });
+}
+
+function closeFormModal() {
+    if (!formModal) return;
+    formModal.classList.remove('is-visible');
+    setTimeout(() => {
+        formModal?.setAttribute('hidden', '');
+    }, 200);
+}
+
+if (extrasForm) {
+    extrasForm.addEventListener('change', renderSummary);
 }
 
 if (contactForm) {
     const formEndpoint = contactForm.getAttribute('action');
     contactForm.addEventListener('submit', async (event) => {
         event.preventDefault();
+        hideInlineError();
         if (!formEndpoint) {
             contactForm.submit();
             return;
@@ -1773,9 +1862,9 @@ if (contactForm) {
                 throw new Error('Network error');
             }
             contactForm.reset();
-            showFormStatus('success');
+            openFormModal();
         } catch (error) {
-            showFormStatus('error');
+            showInlineError();
         }
     });
 }
@@ -1788,6 +1877,18 @@ applyTheme(initialTheme);
 
 detailToggles.forEach((button) => {
     button.addEventListener('click', () => handleDetailToggle(button));
+});
+
+detailCloseButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        const targetId = button.dataset.detailClose;
+        setDetailState(targetId, false);
+    });
+});
+
+[formModalClose, formModalOverlay].forEach((element) => {
+    if (!element) return;
+    element.addEventListener('click', closeFormModal);
 });
 
 if (themeToggle) {
@@ -1839,5 +1940,6 @@ document.addEventListener('click', (event) => {
 document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
         closeLangMenu();
+        closeFormModal();
     }
 });
