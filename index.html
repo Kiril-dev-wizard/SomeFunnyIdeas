@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="meta.title">Астролог Кирилл — астрология, руны и авторские ритуалы</title>
+    <meta name="description" content="Астролог и рунический практик Кирилл: разбор натальной карты, прогнозы на год, индивидуальные ритуалы и консультации на рунах. Запишитесь, чтобы получить чёткий план и поддержку." data-i18n-target="meta.description">
+    <meta name="keywords" content="астролог Кирилл, разбор натальной карты, прогноз на год, ритуалы на заказ, руническая консультация" data-i18n-target="meta.keywords">
+    <link rel="canonical" href="https://example.com/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <script type="application/ld+json" id="schema-person">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Кирилл",
+        "jobTitle": "Астролог и рунический практик",
+        "description": "Провожу разборы натальной карты, годовые прогнозы, ритуалы на заказ и консультации на рунах.",
+        "url": "https://example.com/",
+        "sameAs": [
+            "https://t.me/",
+            "https://instagram.com/"
+        ],
+        "makesOffer": [
+            {
+                "@type": "Offer",
+                "name": "Базовый разбор натальной карты",
+                "price": "80",
+                "priceCurrency": "USD",
+                "category": "Астрологическая консультация"
+            },
+            {
+                "@type": "Offer",
+                "name": "Прогноз на год",
+                "price": "100",
+                "priceCurrency": "USD",
+                "category": "Астрологическая консультация"
+            },
+            {
+                "@type": "Offer",
+                "name": "Ритуал на заказ",
+                "price": "60",
+                "priceCurrency": "USD",
+                "category": "Энергопрактики"
+            },
+            {
+                "@type": "Offer",
+                "name": "Консультация- гадание на рунах",
+                "price": "30",
+                "priceCurrency": "USD",
+                "priceSpecification": {
+                    "@type": "UnitPriceSpecification",
+                    "price": "30",
+                    "priceCurrency": "USD",
+                    "unitText": "hour"
+                },
+                "category": "Руническая консультация"
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+    <header class="hero" id="top">
+        <div class="hero__grid container">
+            <div class="hero__content">
+                <div class="hero__bar">
+                    <div class="hero__controls">
+                        <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" data-i18n-attr-title="theme.toggleTitle">
+                            <span class="theme-toggle__icon" data-theme-icon aria-hidden="true">🌞</span>
+                            <span class="theme-toggle__text" data-theme-label data-i18n="theme.lightLabel">Светлая тема</span>
+                        </button>
+                        <div class="lang-switcher" data-lang-switcher>
+                            <button class="lang-switcher__trigger" type="button" data-lang-toggle aria-haspopup="true" aria-expanded="false">
+                                <span class="lang-switcher__icon" aria-hidden="true">🌐</span>
+                                <span class="lang-switcher__label" data-i18n="language.label">Язык</span>
+                                <span class="lang-switcher__current" data-current-lang>RU</span>
+                            </button>
+                            <ul class="lang-switcher__menu" data-lang-menu hidden role="listbox">
+                                <li><button type="button" data-lang-option="ru">RU</button></li>
+                                <li><button type="button" data-lang-option="uk">UA</button></li>
+                                <li><button type="button" data-lang-option="pl">PL</button></li>
+                                <li><button type="button" data-lang-option="en">EN</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <p class="hero__tag" data-i18n="hero.tagline">Астрология • Руны • Ритуалы</p>
+                <h1 class="hero__title" data-i18n="hero.title">Кирилл — ваш проводник в ясность и магию</h1>
+                <p class="hero__subtitle" data-i18n="hero.subtitle">Уже 3 года сочетаю астрологию и рунические практики, чтобы вы быстрее проживали кармические уроки, усиливали отношения и управляли энергией собственной жизни.</p>
+                <div class="hero__cta">
+                    <a class="btn btn--primary" href="#services" data-i18n="hero.ctaPrimary">Выбрать услугу</a>
+                    <a class="btn btn--ghost" href="#contact" data-i18n="hero.ctaSecondary">Связаться</a>
+                </div>
+            </div>
+            <div class="hero__visual" aria-hidden="true">
+                <div class="hero__orb">
+                    <div class="hero__orb-ring hero__orb-ring--one"></div>
+                    <div class="hero__orb-ring hero__orb-ring--two"></div>
+                    <div class="hero__orb-core"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="section" id="bio">
+            <div class="container split">
+                <div>
+                    <h2 class="section__title" data-i18n="bio.title">О Кирилле</h2>
+                    <p data-i18n="bio.paragraph1">Меня зовут Кирилл. В магии и астрологии уже 3 года. Решаю свои жизненные задачи с помощью магии, строю на каждый месяц план, улучшаю отношения, развиваю себя в каждой сфере с помощью ритуалов намного быстрее — ускоряю получение инсайтов и результатов.</p>
+                    <p data-i18n="bio.paragraph2">Выстроил сбалансированную систему работы: руны + астрология. Руны — для влияния на жизнь, события и внутренние процессы. Астрология — для построения плана по каждой сфере жизни на годы вперёд. Это помогает держать под контролем всё, что происходит, максимально удачно использовать каждый период и при этом чувствовать себя гармонично.</p>
+                </div>
+                <div class="bio__card">
+                    <h3 data-i18n="bio.formulaTitle">Формула работы</h3>
+                    <ul>
+                        <li data-i18n="bio.points.0">Диагностика через натальную карту и транзиты</li>
+                        <li data-i18n="bio.points.1">Подбор ритуалов и рунических настроек под запрос</li>
+                        <li data-i18n="bio.points.2">Сопровождение до устойчивого результата</li>
+                    </ul>
+                    <p class="bio__note" data-i18n="bio.note">Работаю экологично и конфиденциально, с уважением к личной свободе и темпу изменений.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--muted" id="services">
+            <div class="container">
+                <h2 class="section__title section__title--center" data-i18n="services.title">Услуги и форматы</h2>
+                <div class="services-grid">
+                    <article class="service-card service-card--highlight" id="natal">
+                        <div class="service-card__header">
+                            <h3 data-i18n="services.natal.title">Базовый разбор натальной карты</h3>
+                            <span class="price-tag" data-i18n="services.natal.price">80&nbsp;$</span>
+                        </div>
+                        <p data-i18n="services.natal.description">Глубокий анализ личностных качеств, потенциалов и жизненных задач. Получите ясные шаги для проработки зон роста и усиления сильных сторон.</p>
+                        <div class="service-card__extras">
+                            <h4 data-i18n="services.natal.extrasTitle">Дополнительные блоки <span>(каждый по 20&nbsp;$)</span></h4>
+                            <form id="natal-form" class="extras-form">
+                                <label class="extras-form__option" data-extra-key="magicProfile">
+                                    <input type="checkbox" name="extra" value="magicProfile" data-price="20">
+                                    <span>
+                                        <strong data-i18n="services.natal.extras.magicProfile.title">Магический профиль</strong>
+                                        <small data-i18n="services.natal.extras.magicProfile.description">Раскроем врождённые способности и инструменты усиления.</small>
+                                    </span>
+                                </label>
+                                <label class="extras-form__option" data-extra-key="synastry">
+                                    <input type="checkbox" name="extra" value="synastry" data-price="20">
+                                    <span>
+                                        <strong data-i18n="services.natal.extras.synastry.title">Синастрия</strong>
+                                        <small data-i18n="services.natal.extras.synastry.description">Разбор любовных и партнёрских сценариев, зоны притяжения и роста.</small>
+                                    </span>
+                                </label>
+                                <label class="extras-form__option" data-extra-key="career">
+                                    <input type="checkbox" name="extra" value="career" data-price="20">
+                                    <span>
+                                        <strong data-i18n="services.natal.extras.career.title">Профориентация</strong>
+                                        <small data-i18n="services.natal.extras.career.description">Определим наиболее ресурсные сферы занятости и векторы развития.</small>
+                                    </span>
+                                </label>
+                            </form>
+                            <div class="extras-summary" aria-live="polite">
+                                <p class="extras-summary__title" data-i18n="services.natal.summaryTitle">Состав консультации</p>
+                                <p class="extras-summary__list" id="extras-list" data-i18n="services.natal.summaryBase">Базовый разбор натальной карты</p>
+                                <p class="extras-summary__total" data-i18n="services.natal.summaryTotal">Итого: <span id="extras-total"></span></p>
+                                <a class="btn btn--secondary" href="#contact" data-i18n="services.natal.cta">Записаться</a>
+                            </div>
+                        </div>
+                        <div class="service-card__more-wrapper">
+                            <button class="btn btn--tertiary service-card__more" type="button" data-detail-toggle data-detail-target="natal-details" aria-expanded="false">
+                                <span class="service-card__more-icon" aria-hidden="true">🌕</span>
+                                <span class="service-card__more-text" data-more-text data-i18n="services.actions.more">Подробнее</span>
+                                <span class="service-card__more-text" data-less-text data-i18n="services.actions.less">Скрыть</span>
+                            </button>
+                        </div>
+                        <div class="service-card__details" id="natal-details" data-detail data-i18n="services.natal.details" hidden></div>
+                    </article>
+
+                    <article class="service-card" id="forecast">
+                        <div class="service-card__header">
+                            <h3 data-i18n="services.forecast.title">Персональный прогноз на год</h3>
+                            <span class="price-tag price-tag--discount">
+                                <span class="price-tag__old" data-i18n="services.forecast.oldPrice">150&nbsp;$</span>
+                                <span class="price-tag__new" data-i18n="services.forecast.price">100&nbsp;$</span>
+                            </span>
+                        </div>
+                        <p data-i18n="services.forecast.description">12-месячный план с акцентом на важные периоды, возможности и зоны повышенного внимания. Помогает заранее распределять ресурсы и выбирать точные даты для проектов.</p>
+                        <ul class="service-card__list">
+                            <li data-i18n="services.forecast.points.0">Помесячные рекомендации по ключевым сферам жизни</li>
+                            <li data-i18n="services.forecast.points.1">Фокус на отношениях, финансах и саморазвитии</li>
+                            <li data-i18n="services.forecast.points.2">Сопровождение в течение 30 дней после консультации</li>
+                        </ul>
+                        <div class="service-card__addon">
+                            <div>
+                                <p class="service-card__addon-title" data-i18n="services.forecast.addon.title">Прогрессивная синастрия</p>
+                                <p class="service-card__addon-description" data-i18n="services.forecast.addon.description">Глубокий анализ пары на ближайший год: динамика, периоды гармонии и план усиления отношений. Стоимость доп. блока — 20&nbsp;$.</p>
+                            </div>
+                            <span class="service-card__addon-price" data-i18n="services.forecast.addon.price">+20&nbsp;$</span>
+                        </div>
+                        <div class="service-card__more-wrapper">
+                            <button class="btn btn--tertiary service-card__more" type="button" data-detail-toggle data-detail-target="forecast-details" aria-expanded="false">
+                                <span class="service-card__more-icon" aria-hidden="true">⭐</span>
+                                <span class="service-card__more-text" data-more-text data-i18n="services.actions.more">Подробнее</span>
+                                <span class="service-card__more-text" data-less-text data-i18n="services.actions.less">Скрыть</span>
+                            </button>
+                        </div>
+                        <div class="service-card__details" id="forecast-details" data-detail data-i18n="services.forecast.details" hidden></div>
+                        <a class="btn btn--ghost" href="#contact" data-i18n="services.forecast.cta">Получить прогноз</a>
+                    </article>
+
+                    <article class="service-card" id="rituals">
+                        <div class="service-card__header">
+                            <h3 data-i18n="services.rituals.title">Ритуалы на заказ</h3>
+                            <span class="price-tag" data-i18n="services.rituals.price">60&nbsp;$</span>
+                        </div>
+                        <p data-i18n="services.rituals.description">Индивидуальные энергетические настройки под конкретный запрос. В работу интегрирую руны, свечную магию и астрологические тайминги.</p>
+                        <div class="service-card__chips">
+                            <span data-i18n="services.rituals.tags.0">Ускорение кармических уроков</span>
+                            <span data-i18n="services.rituals.tags.1">Чистка и восстановление</span>
+                            <span data-i18n="services.rituals.tags.2">Подогрев чувств в паре</span>
+                        </div>
+                        <p class="service-card__note" data-i18n="services.rituals.note">Перед началом созваниваемся, чтобы настроить ритуал под вас.</p>
+                        <div class="service-card__more-wrapper">
+                            <button class="btn btn--tertiary service-card__more" type="button" data-detail-toggle data-detail-target="rituals-details" aria-expanded="false">
+                                <span class="service-card__more-icon" aria-hidden="true">🔮</span>
+                                <span class="service-card__more-text" data-more-text data-i18n="services.actions.more">Подробнее</span>
+                                <span class="service-card__more-text" data-less-text data-i18n="services.actions.less">Скрыть</span>
+                            </button>
+                        </div>
+                        <div class="service-card__details" id="rituals-details" data-detail data-i18n="services.rituals.details" hidden></div>
+                        <a class="btn btn--ghost" href="#contact" data-i18n="services.rituals.cta">Обсудить ритуал</a>
+                    </article>
+
+                    <article class="service-card" id="runes">
+                        <div class="service-card__header">
+                            <h3 data-i18n="services.runes.title">Консультация на рунах</h3>
+                            <span class="price-tag" data-i18n="services.runes.price">30&nbsp;$/час</span>
+                        </div>
+                        <p data-i18n="services.runes.description">Гадание на рунах для оперативных вопросов. Получите ясные ответы и рекомендации по любым сферам — от отношений до бизнеса.</p>
+                        <ul class="service-card__list">
+                            <li data-i18n="services.runes.points.0">Сессия в формате онлайн-звонка</li>
+                            <li data-i18n="services.runes.points.1">Работаем до выявления оптимального решения</li>
+                            <li data-i18n="services.runes.points.2">При необходимости дополняю руническими настройками</li>
+                        </ul>
+                        <div class="service-card__more-wrapper">
+                            <button class="btn btn--tertiary service-card__more" type="button" data-detail-toggle data-detail-target="runes-details" aria-expanded="false">
+                                <span class="service-card__more-icon" aria-hidden="true">⚡</span>
+                                <span class="service-card__more-text" data-more-text data-i18n="services.actions.more">Подробнее</span>
+                                <span class="service-card__more-text" data-less-text data-i18n="services.actions.less">Скрыть</span>
+                            </button>
+                        </div>
+                        <div class="service-card__details" id="runes-details" data-detail data-i18n="services.runes.details" hidden></div>
+                        <a class="btn btn--ghost" href="#contact" data-i18n="services.runes.cta">Записаться на звонок</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="testimonials">
+            <div class="container">
+                <h2 class="section__title section__title--center" data-i18n="testimonials.title">Отзывы</h2>
+                <div class="testimonials">
+                    <article class="testimonial">
+                        <p data-i18n="testimonials.items.0.text">«Благодаря разбору карты я наконец увидела структуру своей жизни. Кирилл мягко подсветил сильные стороны и дал план действий на ближайшие месяцы.»</p>
+                        <span class="testimonial__author" data-i18n="testimonials.items.0.author">Марина</span>
+                    </article>
+                    <article class="testimonial">
+                        <p data-i18n="testimonials.items.1.text">«Годовой прогноз совпал с ключевыми событиями почти до дня. Теперь планирую все запуски только по космическому календарю от Кирилла.»</p>
+                        <span class="testimonial__author" data-i18n="testimonials.items.1.author">Анастасия</span>
+                    </article>
+                    <article class="testimonial">
+                        <p data-i18n="testimonials.items.2.text">«Ритуал чистки снял затяжное напряжение и помог вернуть ресурсное состояние. Чувствую поддержку даже после сессии.»</p>
+                        <span class="testimonial__author" data-i18n="testimonials.items.2.author">Олег</span>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--accent" id="contact">
+            <div class="container contact">
+                <div>
+                    <h2 class="section__title" data-i18n="contact.title">Запись и связь</h2>
+                    <p data-i18n="contact.description">Опишите запрос и желаемый формат работы. Я отвечу в течение суток, уточню детали и предложу ближайшие даты.</p>
+                    <ul class="contact__list">
+                        <li><strong>Telegram:</strong> <a href="https://t.me/" rel="noopener" data-i18n="contact.telegram">@your_astrologist</a></li>
+                        <li><strong>Email:</strong> <a href="mailto:hello@example.com" data-i18n="contact.email">hello@example.com</a></li>
+                    </ul>
+                </div>
+                <form class="contact__form" aria-label="Форма обратной связи" data-i18n-attr-aria-label="form.ariaLabel" action="https://formspree.io/f/mzzyaopy" method="POST" data-formspree>
+                    <input type="hidden" name="locale" value="ru" data-locale-field>
+                    <label>
+                        <span data-i18n="form.nameLabel">Имя</span>
+                        <input type="text" name="name" placeholder="Ваше имя" required data-i18n-placeholder="form.namePlaceholder">
+                    </label>
+                    <label>
+                        <span data-i18n="form.contactLabel">Контакт для связи</span>
+                        <input type="text" name="contact" placeholder="Telegram или телефон" required data-i18n-placeholder="form.contactPlaceholder">
+                    </label>
+                    <label>
+                        <span data-i18n="form.messageLabel">Запрос</span>
+                        <textarea name="message" rows="4" placeholder="Расскажите о цели, с которой приходите" data-i18n-placeholder="form.messagePlaceholder"></textarea>
+                    </label>
+                    <button type="submit" class="btn btn--primary" data-i18n="form.submit">Отправить заявку</button>
+                    <p class="form-success" data-success-message hidden data-i18n="form.success">Заявка отправлена! Свяжусь с вами в ближайшее время.</p>
+                    <p class="form-error" data-error-message hidden data-i18n="form.error">Не удалось отправить. Попробуйте ещё раз или напишите в Telegram.</p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer__content">
+            <a href="#top" class="footer__logo" data-i18n="footer.logo">Кирилл • Астрология &amp; Руны</a>
+            <p data-i18n="footer.note">© 2024. Индивидуальные консультации, ритуалы и сопровождение. Все права защищены.</p>
+            <div class="footer__socials">
+                <a href="https://t.me/" aria-label="Telegram" data-i18n="footer.telegram">Telegram</a>
+                <a href="https://instagram.com/" aria-label="Instagram" data-i18n="footer.instagram">Instagram</a>
+                <a href="mailto:hello@example.com" aria-label="Email" data-i18n="footer.email">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/main.js" defer></script>
+</body>
+</html>
