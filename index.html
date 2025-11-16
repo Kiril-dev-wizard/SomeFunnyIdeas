@@ -9,7 +9,7 @@
     <link rel="canonical" href="https://example.com/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/main.css">
     <script type="application/ld+json" id="schema-person">
     {
@@ -67,10 +67,25 @@
         <div class="hero__grid container">
             <div class="hero__content">
                 <div class="hero__bar">
-                    <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" data-i18n-attr-title="theme.toggleTitle">
-                        <span class="theme-toggle__icon" data-theme-icon aria-hidden="true">🌞</span>
-                        <span class="theme-toggle__text" data-theme-label data-i18n="theme.lightLabel">Светлая тема</span>
-                    </button>
+                    <div class="hero__controls">
+                        <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" data-i18n-attr-title="theme.toggleTitle">
+                            <span class="theme-toggle__icon" data-theme-icon aria-hidden="true">🌞</span>
+                            <span class="theme-toggle__text" data-theme-label data-i18n="theme.lightLabel">Светлая тема</span>
+                        </button>
+                        <div class="lang-switcher" data-lang-switcher>
+                            <button class="lang-switcher__trigger" type="button" data-lang-toggle aria-haspopup="true" aria-expanded="false">
+                                <span class="lang-switcher__icon" aria-hidden="true">🌐</span>
+                                <span class="lang-switcher__label" data-i18n="language.label">Язык</span>
+                                <span class="lang-switcher__current" data-current-lang>RU</span>
+                            </button>
+                            <ul class="lang-switcher__menu" data-lang-menu hidden role="listbox">
+                                <li><button type="button" data-lang-option="ru">RU</button></li>
+                                <li><button type="button" data-lang-option="uk">UA</button></li>
+                                <li><button type="button" data-lang-option="pl">PL</button></li>
+                                <li><button type="button" data-lang-option="en">EN</button></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <p class="hero__tag" data-i18n="hero.tagline">Астрология • Руны • Ритуалы</p>
                 <h1 class="hero__title" data-i18n="hero.title">Кирилл — ваш проводник в ясность и магию</h1>
@@ -144,13 +159,6 @@
                                         <small data-i18n="services.natal.extras.career.description">Определим наиболее ресурсные сферы занятости и векторы развития.</small>
                                     </span>
                                 </label>
-                                <label class="extras-form__option" data-extra-key="progressiveSynastry">
-                                    <input type="checkbox" name="extra" value="progressiveSynastry" data-price="20">
-                                    <span>
-                                        <strong data-i18n="services.natal.extras.progressiveSynastry.title">Прогрессивная синастрия</strong>
-                                        <small data-i18n="services.natal.extras.progressiveSynastry.description">Глубокая динамика отношений с учётом прогрессий и транзитов.</small>
-                                    </span>
-                                </label>
                             </form>
                             <div class="extras-summary" aria-live="polite">
                                 <p class="extras-summary__title" data-i18n="services.natal.summaryTitle">Состав консультации</p>
@@ -159,6 +167,14 @@
                                 <a class="btn btn--secondary" href="#contact" data-i18n="services.natal.cta">Записаться</a>
                             </div>
                         </div>
+                        <div class="service-card__more-wrapper">
+                            <button class="btn btn--tertiary service-card__more" type="button" data-detail-toggle data-detail-target="natal-details" aria-expanded="false">
+                                <span class="service-card__more-icon" aria-hidden="true">🌕</span>
+                                <span class="service-card__more-text" data-more-text data-i18n="services.actions.more">Подробнее</span>
+                                <span class="service-card__more-text" data-less-text data-i18n="services.actions.less">Скрыть</span>
+                            </button>
+                        </div>
+                        <div class="service-card__details" id="natal-details" data-detail data-i18n="services.natal.details" hidden></div>
                     </article>
 
                     <article class="service-card" id="forecast">
@@ -175,6 +191,21 @@
                             <li data-i18n="services.forecast.points.1">Фокус на отношениях, финансах и саморазвитии</li>
                             <li data-i18n="services.forecast.points.2">Сопровождение в течение 30 дней после консультации</li>
                         </ul>
+                        <div class="service-card__addon">
+                            <div>
+                                <p class="service-card__addon-title" data-i18n="services.forecast.addon.title">Прогрессивная синастрия</p>
+                                <p class="service-card__addon-description" data-i18n="services.forecast.addon.description">Глубокий анализ пары на ближайший год: динамика, периоды гармонии и план усиления отношений. Стоимость доп. блока — 20&nbsp;$.</p>
+                            </div>
+                            <span class="service-card__addon-price" data-i18n="services.forecast.addon.price">+20&nbsp;$</span>
+                        </div>
+                        <div class="service-card__more-wrapper">
+                            <button class="btn btn--tertiary service-card__more" type="button" data-detail-toggle data-detail-target="forecast-details" aria-expanded="false">
+                                <span class="service-card__more-icon" aria-hidden="true">⭐</span>
+                                <span class="service-card__more-text" data-more-text data-i18n="services.actions.more">Подробнее</span>
+                                <span class="service-card__more-text" data-less-text data-i18n="services.actions.less">Скрыть</span>
+                            </button>
+                        </div>
+                        <div class="service-card__details" id="forecast-details" data-detail data-i18n="services.forecast.details" hidden></div>
                         <a class="btn btn--ghost" href="#contact" data-i18n="services.forecast.cta">Получить прогноз</a>
                     </article>
 
@@ -190,6 +221,14 @@
                             <span data-i18n="services.rituals.tags.2">Подогрев чувств в паре</span>
                         </div>
                         <p class="service-card__note" data-i18n="services.rituals.note">Перед началом созваниваемся, чтобы настроить ритуал под вас.</p>
+                        <div class="service-card__more-wrapper">
+                            <button class="btn btn--tertiary service-card__more" type="button" data-detail-toggle data-detail-target="rituals-details" aria-expanded="false">
+                                <span class="service-card__more-icon" aria-hidden="true">🔮</span>
+                                <span class="service-card__more-text" data-more-text data-i18n="services.actions.more">Подробнее</span>
+                                <span class="service-card__more-text" data-less-text data-i18n="services.actions.less">Скрыть</span>
+                            </button>
+                        </div>
+                        <div class="service-card__details" id="rituals-details" data-detail data-i18n="services.rituals.details" hidden></div>
                         <a class="btn btn--ghost" href="#contact" data-i18n="services.rituals.cta">Обсудить ритуал</a>
                     </article>
 
@@ -204,6 +243,14 @@
                             <li data-i18n="services.runes.points.1">Работаем до выявления оптимального решения</li>
                             <li data-i18n="services.runes.points.2">При необходимости дополняю руническими настройками</li>
                         </ul>
+                        <div class="service-card__more-wrapper">
+                            <button class="btn btn--tertiary service-card__more" type="button" data-detail-toggle data-detail-target="runes-details" aria-expanded="false">
+                                <span class="service-card__more-icon" aria-hidden="true">⚡</span>
+                                <span class="service-card__more-text" data-more-text data-i18n="services.actions.more">Подробнее</span>
+                                <span class="service-card__more-text" data-less-text data-i18n="services.actions.less">Скрыть</span>
+                            </button>
+                        </div>
+                        <div class="service-card__details" id="runes-details" data-detail data-i18n="services.runes.details" hidden></div>
                         <a class="btn btn--ghost" href="#contact" data-i18n="services.runes.cta">Записаться на звонок</a>
                     </article>
                 </div>
@@ -240,7 +287,8 @@
                         <li><strong>Email:</strong> <a href="mailto:hello@example.com" data-i18n="contact.email">hello@example.com</a></li>
                     </ul>
                 </div>
-                <form class="contact__form" aria-label="Форма обратной связи" data-i18n-attr-aria-label="form.ariaLabel">
+                <form class="contact__form" aria-label="Форма обратной связи" data-i18n-attr-aria-label="form.ariaLabel" action="https://formspree.io/f/mzzyaopy" method="POST" data-formspree>
+                    <input type="hidden" name="locale" value="ru" data-locale-field>
                     <label>
                         <span data-i18n="form.nameLabel">Имя</span>
                         <input type="text" name="name" placeholder="Ваше имя" required data-i18n-placeholder="form.namePlaceholder">
@@ -255,6 +303,7 @@
                     </label>
                     <button type="submit" class="btn btn--primary" data-i18n="form.submit">Отправить заявку</button>
                     <p class="form-success" data-success-message hidden data-i18n="form.success">Заявка отправлена! Свяжусь с вами в ближайшее время.</p>
+                    <p class="form-error" data-error-message hidden data-i18n="form.error">Не удалось отправить. Попробуйте ещё раз или напишите в Telegram.</p>
                 </form>
             </div>
         </section>
