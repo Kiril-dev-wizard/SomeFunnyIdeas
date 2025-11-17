@@ -6,10 +6,42 @@
     <title data-i18n="meta.title">Астролог Кирилл — астрология, руны и авторские ритуалы</title>
     <meta name="description" content="Астролог и рунический практик Кирилл: разбор натальной карты, прогнозы на год, индивидуальные ритуалы и консультации на рунах. Запишитесь, чтобы получить чёткий план и поддержку." data-i18n-target="meta.description">
     <meta name="keywords" content="астролог Кирилл, разбор натальной карты, прогноз на год, ритуалы на заказ, руническая консультация" data-i18n-target="meta.keywords">
+    <meta name="theme-color" content="#0D0D0F">
     <link rel="canonical" href="https://example.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Астролог Кирилл — астрология, руны и авторские ритуалы" data-i18n-target="meta.title">
+    <meta property="og:description" content="Астролог и рунический практик Кирилл: разбор натальной карты, прогнозы на год, индивидуальные ритуалы и консультации на рунах. Запишитесь, чтобы получить чёткий план и поддержку." data-i18n-target="meta.description">
+    <meta property="og:url" content="https://example.com/">
+    <meta property="og:locale" content="ru_RU">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Астролог Кирилл — астрология, руны и авторские ритуалы" data-i18n-target="meta.title">
+    <meta name="twitter:description" content="Астролог и рунический практик Кирилл: разбор натальной карты, прогнозы на год, индивидуальные ритуалы и консультации на рунах. Запишитесь, чтобы получить чёткий план и поддержку." data-i18n-target="meta.description">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: ['class', '[data-theme="dark"]'],
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#0D0D0F',
+                        accent: '#8D53FF',
+                        secondary: '#A0A0FF',
+                        muted: '#B7B7B7'
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'system-ui', 'sans-serif'],
+                        display: ['Unbounded', 'Manrope', 'system-ui']
+                    },
+                    screens: {
+                        xs: '360px'
+                    }
+                }
+            }
+        };
+    </script>
     <link rel="stylesheet" href="styles/main.css">
     <script type="application/ld+json" id="schema-person">
     {
@@ -63,12 +95,16 @@
     }
     </script>
 </head>
-<body>
-    <header class="hero" id="top">
-        <div class="hero__grid container">
-            <div class="hero__content">
-                <div class="hero__bar">
-                    <div class="hero__controls">
+<body data-theme="dark" class="bg-[var(--bg)] text-[var(--text)] font-sans antialiased">
+    <div class="preloader" data-preloader>
+        <div class="preloader__symbol" aria-hidden="true"></div>
+        <p class="preloader__text" data-i18n="preloader.text">Загружаю атмосферу…</p>
+    </div>
+    <header class="hero relative flex min-h-screen items-center overflow-hidden py-24 lg:py-40" id="top">
+        <div class="hero__grid container mx-auto grid gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-12 items-center">
+            <div class="hero__content flex flex-col gap-6">
+                <div class="hero__bar flex flex-wrap items-center justify-between gap-4">
+                    <div class="hero__controls flex flex-wrap gap-4">
                         <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" data-i18n-attr-title="theme.toggleTitle">
                             <span class="theme-toggle__icon" data-theme-icon aria-hidden="true"></span>
                             <span class="theme-toggle__text" data-theme-label data-i18n="theme.lightLabel">Светлая тема</span>
@@ -88,33 +124,33 @@
                         </div>
                     </div>
                 </div>
-                <p class="hero__tag" data-i18n="hero.tagline">Астрология • Руны • Ритуалы</p>
-                <h1 class="hero__title" data-i18n="hero.title">Кирилл — ваш проводник в ясность и магию</h1>
-                <p class="hero__subtitle" data-i18n="hero.subtitle">Уже 3 года сочетаю астрологию и рунические практики, чтобы вы быстрее проживали кармические уроки, усиливали отношения и управляли энергией собственной жизни.</p>
-                <div class="hero__cta">
+                <p class="hero__tag text-sm uppercase tracking-[0.4em] text-secondary" data-i18n="hero.tagline">Астрология • Руны • Ритуалы</p>
+                <h1 class="hero__title text-4xl xs:text-5xl lg:text-6xl" data-i18n="hero.title">Кирилл — ваш проводник в ясность и магию</h1>
+                <h2 class="hero__subtitle text-lg text-muted" data-i18n="hero.subtitle">Уже 3 года сочетаю астрологию и рунические практики, чтобы вы быстрее проживали кармические уроки, усиливали отношения и управляли энергией собственной жизни.</h2>
+                <div class="hero__cta flex flex-wrap gap-4">
                     <a class="btn btn--primary" href="#services" data-i18n="hero.ctaPrimary">Выбрать услугу</a>
                     <a class="btn btn--ghost" href="#contact" data-i18n="hero.ctaSecondary">Связаться</a>
                 </div>
             </div>
-            <div class="hero__visual" aria-hidden="true">
-                <div class="hero__orb">
-                    <div class="hero__orb-ring hero__orb-ring--one"></div>
-                    <div class="hero__orb-ring hero__orb-ring--two"></div>
-                    <div class="hero__orb-core"></div>
+            <div class="hero__visual flex justify-center" aria-hidden="true">
+                <div class="hero__orb" data-parallax data-depth="0.18">
+                    <div class="hero__orb-ring hero__orb-ring--one" data-parallax data-depth="0.25"></div>
+                    <div class="hero__orb-ring hero__orb-ring--two" data-parallax data-depth="0.32"></div>
+                    <div class="hero__orb-core" data-parallax data-depth="0.4"></div>
                 </div>
             </div>
         </div>
     </header>
 
     <main>
-        <section class="section" id="bio">
-            <div class="container split">
-                <div>
+        <section class="section py-24 lg:py-32" id="bio">
+            <div class="container layout-grid layout-grid--two mx-auto grid gap-10 lg:gap-16 px-4 sm:px-6 lg:px-12 lg:grid-cols-2">
+                <div class="space-y-6">
                     <h2 class="section__title" data-i18n="bio.title">О Кирилле</h2>
                     <p data-i18n="bio.paragraph1">Меня зовут Кирилл. В магии и астрологии уже 3 года. Решаю свои жизненные задачи с помощью магии, строю на каждый месяц план, улучшаю отношения, развиваю себя в каждой сфере с помощью ритуалов намного быстрее — ускоряю получение инсайтов и результатов.</p>
                     <p data-i18n="bio.paragraph2">Выстроил сбалансированную систему работы: руны + астрология. Руны — для влияния на жизнь, события и внутренние процессы. Астрология — для построения плана по каждой сфере жизни на годы вперёд. Это помогает держать под контролем всё, что происходит, максимально удачно использовать каждый период и при этом чувствовать себя гармонично.</p>
                 </div>
-                <div class="bio__card">
+                <div class="bio__card rounded-3xl bg-[var(--surface)] p-8 space-y-6">
                     <h3 data-i18n="bio.formulaTitle">Формула работы</h3>
                     <ul>
                         <li data-i18n="bio.points.0">Диагностика через натальную карту и транзиты</li>
@@ -126,45 +162,48 @@
             </div>
         </section>
 
-        <section class="section section--muted" id="services">
-            <div class="container">
-                <h2 class="section__title section__title--center" data-i18n="services.title">Услуги и форматы</h2>
-                <div class="services-grid">
-                    <article class="service-card service-card--highlight" id="natal">
-                        <div class="service-card__header">
+        <section class="section section--muted py-24 lg:py-32" id="services">
+            <div class="container stack mx-auto flex flex-col gap-12 px-4 sm:px-6 lg:px-12">
+                <h2 class="section__title section__title--center text-center" data-i18n="services.title">Услуги и форматы</h2>
+                <div class="services-grid grid gap-8 xl:grid-cols-2">
+                    <article class="service-card service-card--highlight grid gap-5" id="natal">
+                        <div class="service-card__header flex flex-col gap-2">
                             <h3 data-i18n="services.natal.title">Базовый разбор натальной карты</h3>
                             <span class="price-tag" data-i18n="services.natal.price">80&nbsp;$</span>
                         </div>
                         <p data-i18n="services.natal.description">Глубокий анализ личностных качеств, потенциалов и жизненных задач. Получите ясные шаги для проработки зон роста и усиления сильных сторон.</p>
-                        <div class="service-card__extras">
+                        <div class="service-card__extras space-y-4">
                             <h4 data-i18n="services.natal.extrasTitle">Дополнительные блоки <span>(каждый по 20&nbsp;$)</span></h4>
-                            <form id="natal-form" class="extras-form">
-                                <label class="extras-form__option" data-extra-key="magicProfile">
+                            <form id="natal-form" class="extras-form space-y-3">
+                                <label class="extras-form__option flex gap-3" data-extra-key="magicProfile">
                                     <input type="checkbox" name="extra" value="magicProfile" data-price="20">
-                                    <span>
+                                    <span class="flex flex-col gap-1">
                                         <strong data-i18n="services.natal.extras.magicProfile.title">Магический профиль</strong>
                                         <small data-i18n="services.natal.extras.magicProfile.description">Раскроем врождённые способности и инструменты усиления.</small>
                                     </span>
                                 </label>
-                                <label class="extras-form__option" data-extra-key="synastry">
+                                <label class="extras-form__option flex gap-3" data-extra-key="synastry">
                                     <input type="checkbox" name="extra" value="synastry" data-price="20">
-                                    <span>
+                                    <span class="flex flex-col gap-1">
                                         <strong data-i18n="services.natal.extras.synastry.title">Синастрия</strong>
                                         <small data-i18n="services.natal.extras.synastry.description">Разбор любовных и партнёрских сценариев, зоны притяжения и роста.</small>
                                     </span>
                                 </label>
-                                <label class="extras-form__option" data-extra-key="career">
+                                <label class="extras-form__option flex gap-3" data-extra-key="career">
                                     <input type="checkbox" name="extra" value="career" data-price="20">
-                                    <span>
+                                    <span class="flex flex-col gap-1">
                                         <strong data-i18n="services.natal.extras.career.title">Профориентация</strong>
                                         <small data-i18n="services.natal.extras.career.description">Определим наиболее ресурсные сферы занятости и векторы развития.</small>
                                     </span>
                                 </label>
                             </form>
-                            <div class="extras-summary" aria-live="polite">
+                            <div class="extras-summary space-y-2" aria-live="polite">
                                 <p class="extras-summary__title" data-i18n="services.natal.summaryTitle">Состав консультации</p>
                                 <p class="extras-summary__list" id="extras-list" data-i18n="services.natal.summaryBase">Базовый разбор натальной карты</p>
-                                <p class="extras-summary__total" data-i18n="services.natal.summaryTotal">Итого: <span id="extras-total"></span></p>
+                                <p class="extras-summary__total">
+                                    <span class="extras-summary__label" data-i18n="services.natal.summaryTotalLabel">Итого</span>
+                                    <output id="extras-total" data-extras-total aria-live="polite" role="status">80&nbsp;$</output>
+                                </p>
                                 <a class="btn btn--secondary" href="#contact" data-i18n="services.natal.cta">Записаться</a>
                             </div>
                         </div>
@@ -181,8 +220,8 @@
                         </div>
                     </article>
 
-                    <article class="service-card" id="forecast">
-                        <div class="service-card__header">
+                    <article class="service-card grid gap-5" id="forecast">
+                        <div class="service-card__header flex flex-col gap-2">
                             <h3 data-i18n="services.forecast.title">Персональный прогноз на год</h3>
                             <span class="price-tag price-tag--discount">
                                 <span class="price-tag__old" data-i18n="services.forecast.oldPrice">150&nbsp;$</span>
@@ -195,7 +234,7 @@
                             <li data-i18n="services.forecast.points.1">Фокус на отношениях, финансах и саморазвитии</li>
                             <li data-i18n="services.forecast.points.2">Сопровождение в течение 30 дней после консультации</li>
                         </ul>
-                        <div class="service-card__addon">
+                        <div class="service-card__addon flex flex-wrap items-start gap-4 rounded-2xl border border-[var(--outline)] p-4">
                             <div>
                                 <p class="service-card__addon-title" data-i18n="services.forecast.addon.title">Прогрессивная синастрия</p>
                                 <p class="service-card__addon-description" data-i18n="services.forecast.addon.description">Глубокий анализ пары на ближайший год: динамика, периоды гармонии и план усиления отношений. Стоимость доп. блока — 20&nbsp;$.</p>
@@ -216,8 +255,8 @@
                         <a class="btn btn--ghost" href="#contact" data-i18n="services.forecast.cta">Получить прогноз</a>
                     </article>
 
-                    <article class="service-card" id="rituals">
-                        <div class="service-card__header">
+                    <article class="service-card grid gap-5" id="rituals">
+                        <div class="service-card__header flex flex-col gap-2">
                             <h3 data-i18n="services.rituals.title">Ритуалы на заказ</h3>
                             <span class="price-tag" data-i18n="services.rituals.price">60&nbsp;$</span>
                         </div>
@@ -268,10 +307,10 @@
             </div>
         </section>
 
-        <section class="section" id="testimonials">
-            <div class="container">
-                <h2 class="section__title section__title--center" data-i18n="testimonials.title">Отзывы</h2>
-                <div class="testimonials">
+        <section class="section py-24 lg:py-32" id="testimonials">
+            <div class="container stack mx-auto flex flex-col gap-12 px-4 sm:px-6 lg:px-12">
+                <h2 class="section__title section__title--center text-center" data-i18n="testimonials.title">Отзывы</h2>
+                <div class="testimonials grid gap-6 md:grid-cols-3">
                     <article class="testimonial">
                         <p data-i18n="testimonials.items.0.text">«Благодаря разбору карты я наконец увидела структуру своей жизни. Кирилл мягко подсветил сильные стороны и дал план действий на ближайшие месяцы.»</p>
                         <span class="testimonial__author" data-i18n="testimonials.items.0.author">Марина</span>
@@ -288,29 +327,29 @@
             </div>
         </section>
 
-        <section class="section section--accent" id="contact">
-            <div class="container contact">
-                <div>
+        <section class="section section--accent py-24 lg:py-32" id="contact">
+            <div class="container contact layout-grid layout-grid--contact mx-auto grid gap-10 px-4 sm:px-6 lg:px-12 lg:grid-cols-2">
+                <div class="space-y-6">
                     <h2 class="section__title" data-i18n="contact.title">Запись и связь</h2>
                     <p data-i18n="contact.description">Опишите запрос и желаемый формат работы. Я отвечу в течение суток, уточню детали и предложу ближайшие даты.</p>
-                    <ul class="contact__list">
-                        <li><strong data-i18n="contact.labels.telegram">Telegram</strong>: <a href="https://t.me/kim0n" rel="noopener" target="_blank" data-i18n="contact.telegram">@kim0n</a></li>
+                    <ul class="contact__list space-y-3">
+                        <li><strong data-i18n="contact.labels.telegram">Telegram</strong>: <a href="https://t.me/kim0n" rel="noopener" target="_blank" data-i18n="contact.telegram">t.me/@kim0n</a></li>
                         <li><strong data-i18n="contact.labels.email">E-mail</strong>: <a href="mailto:kaminskyikiril5@gmail.com" data-i18n="contact.email">kaminskyikiril5@gmail.com</a></li>
-                        <li><strong data-i18n="contact.labels.instagram">Instagram</strong>: <a href="https://www.instagram.com/kimon_wizard?igsh=aDIxZWFwNzVjcTIw&utm_source=qr" target="_blank" rel="noopener" data-i18n="contact.instagram">@kimon_wizard</a></li>
+                        <li><strong data-i18n="contact.labels.instagram">Instagram</strong>: <a href="https://www.instagram.com/kimon_wizard?igsh=aDIxZWFwNzVjcTIw&utm_source=qr" target="_blank" rel="noopener" data-i18n="contact.instagram">kimon_wizard</a></li>
                         <li><strong data-i18n="contact.labels.tiktok">TikTok</strong>: <a href="https://www.tiktok.com/@kim0nn?_r=1&_t=ZN-91RhbujfW5O" target="_blank" rel="noopener" data-i18n="contact.tiktok">@kim0nn</a></li>
                     </ul>
                 </div>
-                <form class="contact__form" aria-label="Форма обратной связи" data-i18n-attr-aria-label="form.ariaLabel" action="https://formspree.io/f/mzzyaopy" method="POST" data-formspree>
+                <form class="contact__form space-y-5" aria-label="Форма обратной связи" data-i18n-attr-aria-label="form.ariaLabel" action="https://formspree.io/f/mzzyaopy" method="POST" data-formspree>
                     <input type="hidden" name="locale" value="ru" data-locale-field>
-                    <label>
+                    <label class="flex flex-col gap-2">
                         <span data-i18n="form.nameLabel">Имя</span>
                         <input type="text" name="name" placeholder="Ваше имя" required data-i18n-placeholder="form.namePlaceholder">
                     </label>
-                    <label>
+                    <label class="flex flex-col gap-2">
                         <span data-i18n="form.contactLabel">Контакт для связи</span>
                         <input type="text" name="contact" placeholder="Telegram или телефон" required data-i18n-placeholder="form.contactPlaceholder">
                     </label>
-                    <label>
+                    <label class="flex flex-col gap-2">
                         <span data-i18n="form.messageLabel">Запрос</span>
                         <textarea name="message" rows="4" placeholder="Расскажите о цели, с которой приходите" data-i18n-placeholder="form.messagePlaceholder"></textarea>
                     </label>
@@ -321,8 +360,8 @@
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="container footer__content">
+    <footer class="footer py-12">
+        <div class="container footer__content mx-auto flex flex-col gap-6 px-4 sm:px-6 lg:px-12 text-center md:text-left md:flex-row md:items-center md:justify-between">
             <a href="#top" class="footer__logo" data-i18n="footer.logo">Кирилл • Астрология &amp; Руны</a>
             <p data-i18n="footer.note">© 2024. Индивидуальные консультации, ритуалы и сопровождение. Все права защищены.</p>
             <div class="footer__socials">
@@ -342,6 +381,8 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
     <script src="scripts/main.js" defer></script>
 </body>
 </html>

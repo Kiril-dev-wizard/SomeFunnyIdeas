@@ -1,6 +1,8 @@
 const themeToggle = document.querySelector('[data-theme-toggle]');
 const themeIcon = themeToggle?.querySelector('[data-theme-icon]');
 const themeLabel = themeToggle?.querySelector('[data-theme-label]');
+const preloader = document.querySelector('[data-preloader]');
+const parallaxElements = document.querySelectorAll('[data-parallax]');
 
 const themeStorageKey = 'preferred-theme';
 const localeStorageKey = 'preferred-locale';
@@ -25,6 +27,9 @@ const translations = {
             lightLabel: 'Светлая тема',
             darkLabel: 'Тёмная тема',
             toggleTitle: 'Переключить тему'
+        },
+        preloader: {
+            text: 'Загружаю атмосферу…'
         },
         hero: {
             tagline: 'Астрология • Руны • Ритуалы',
@@ -73,7 +78,7 @@ const translations = {
                 summaryTitle: 'Состав консультации',
                 summaryBase: 'Базовый разбор натальной карты',
                 summaryWithExtras: 'Базовый разбор + {{extras}}',
-                summaryTotal: 'Итого: <span id="extras-total"></span>',
+                summaryTotalLabel: 'Итого',
                 bonus: 'Бонус: консультация на рунах (1 час) — смотрим лучшие и худшие сценарии развития событий.',
                 cta: 'Записаться',
                 details: `
@@ -353,9 +358,9 @@ const translations = {
                 instagram: 'Instagram',
                 tiktok: 'TikTok'
             },
-            telegram: '@kim0n',
+            telegram: 't.me/@kim0n',
             email: 'kaminskyikiril5@gmail.com',
-            instagram: '@kimon_wizard',
+            instagram: 'kimon_wizard',
             tiktok: '@kim0nn'
         },
         form: {
@@ -398,6 +403,9 @@ const translations = {
             lightLabel: 'Світла тема',
             darkLabel: 'Темна тема',
             toggleTitle: 'Змінити тему'
+        },
+        preloader: {
+            text: 'Завантажую атмосферу…'
         },
         hero: {
             tagline: 'Астрологія • Руни • Ритуали',
@@ -446,7 +454,7 @@ const translations = {
                 summaryTitle: 'Склад консультації',
                 summaryBase: 'Базовий розбір натальної карти',
                 summaryWithExtras: 'Базовий розбір + {{extras}}',
-                summaryTotal: 'Разом: <span id="extras-total"></span>',
+                summaryTotalLabel: 'Разом',
                 bonus: 'Бонус: годинна консультація на рунах — дивимося найкращі й найризикованіші сценарії.',
                 cta: 'Записатися',
                 details: `
@@ -724,9 +732,9 @@ const translations = {
                 instagram: 'Instagram',
                 tiktok: 'TikTok'
             },
-            telegram: '@kim0n',
+            telegram: 't.me/@kim0n',
             email: 'kaminskyikiril5@gmail.com',
-            instagram: '@kimon_wizard',
+            instagram: 'kimon_wizard',
             tiktok: '@kim0nn'
         },
         form: {
@@ -769,6 +777,9 @@ const translations = {
             lightLabel: 'Jasny motyw',
             darkLabel: 'Ciemny motyw',
             toggleTitle: 'Przełącz motyw'
+        },
+        preloader: {
+            text: 'Ładuję magię…'
         },
         hero: {
             tagline: 'Astrologia • Runy • Rytuały',
@@ -817,7 +828,7 @@ const translations = {
                 summaryTitle: 'Zakres konsultacji',
                 summaryBase: 'Bazowa analiza kosmogramu',
                 summaryWithExtras: 'Analiza bazowa + {{extras}}',
-                summaryTotal: 'Razem: <span id="extras-total"></span>',
+                summaryTotalLabel: 'Razem',
                 bonus: 'Bonus: godzinna konsultacja runiczna — omawiamy najlepsze i najtrudniejsze scenariusze.',
                 cta: 'Zapisz się',
                 details: `
@@ -1095,9 +1106,9 @@ const translations = {
                 instagram: 'Instagram',
                 tiktok: 'TikTok'
             },
-            telegram: '@kim0n',
+            telegram: 't.me/@kim0n',
             email: 'kaminskyikiril5@gmail.com',
-            instagram: '@kimon_wizard',
+            instagram: 'kimon_wizard',
             tiktok: '@kim0nn'
         },
         form: {
@@ -1140,6 +1151,9 @@ const translations = {
             lightLabel: 'Light theme',
             darkLabel: 'Dark theme',
             toggleTitle: 'Toggle theme'
+        },
+        preloader: {
+            text: 'Summoning the vibe…'
         },
         hero: {
             tagline: 'Astrology • Runes • Rituals',
@@ -1188,7 +1202,7 @@ const translations = {
                 summaryTitle: 'Consultation package',
                 summaryBase: 'Core natal chart reading',
                 summaryWithExtras: 'Core reading + {{extras}}',
-                summaryTotal: 'Total: <span id="extras-total"></span>',
+                summaryTotalLabel: 'Total',
                 bonus: 'Bonus: 1-hour rune consultation to review the best and worst-case scenarios.',
                 cta: 'Book now',
                 details: `
@@ -1466,9 +1480,9 @@ const translations = {
                 instagram: 'Instagram',
                 tiktok: 'TikTok'
             },
-            telegram: '@kim0n',
+            telegram: 't.me/@kim0n',
             email: 'kaminskyikiril5@gmail.com',
-            instagram: '@kimon_wizard',
+            instagram: 'kimon_wizard',
             tiktok: '@kim0nn'
         },
         form: {
@@ -1518,6 +1532,11 @@ const formModalText = document.querySelector('[data-form-modal-text]');
 const formModalClose = document.querySelector('[data-form-modal-close]');
 const formModalOverlay = document.querySelector('[data-form-modal-overlay]');
 
+window.addEventListener('load', () => {
+    hidePreloader();
+    initGsapAnimations();
+});
+
 function getNestedValue(object, path) {
     return path.split('.').reduce((accumulator, key) => {
         if (accumulator && typeof accumulator === 'object' && key in accumulator) {
@@ -1545,6 +1564,46 @@ function formatCurrency(amount) {
         return `$${rounded}`;
     }
     return `${rounded} $`;
+}
+
+function hidePreloader() {
+    if (!preloader) return;
+    preloader.classList.add('is-hidden');
+    setTimeout(() => {
+        preloader?.remove();
+    }, 600);
+}
+
+function initGsapAnimations() {
+    if (typeof window === 'undefined' || typeof window.gsap === 'undefined') {
+        return;
+    }
+    const gsapInstance = window.gsap;
+    if (!gsapInstance) return;
+    if (window.ScrollTrigger) {
+        gsapInstance.registerPlugin(window.ScrollTrigger);
+    }
+    const timeline = gsapInstance.timeline({ defaults: { duration: 1.1, ease: 'power3.out' } });
+    timeline
+        .from('.hero__tag', { opacity: 0, y: 20 })
+        .from('.hero__title', { opacity: 0, y: 40 }, 0.1)
+        .from('.hero__subtitle', { opacity: 0, y: 30 }, 0.2)
+        .from('.hero__cta .btn', { opacity: 0, y: 20, stagger: 0.1 }, 0.4);
+
+    if (window.ScrollTrigger) {
+        parallaxElements.forEach((element) => {
+            const depth = Number(element.dataset.depth || 0.2);
+            gsapInstance.to(element, {
+                yPercent: depth * 35,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: element.closest('.hero') || element,
+                    start: 'top bottom',
+                    scrub: true
+                }
+            });
+        });
+    }
 }
 
 function updateLocaleIndicator(locale) {
@@ -1606,6 +1665,9 @@ function setLangMenuVisibility(show) {
     }
     langMenu.hidden = !show;
     langToggleButton.setAttribute('aria-expanded', String(show));
+    if (langSwitcher) {
+        langSwitcher.classList.toggle('is-open', show);
+    }
 }
 
 function closeLangMenu() {
@@ -1663,6 +1725,14 @@ function applyTranslations(locale) {
         const value = key ? translate(key) : undefined;
         if (value !== undefined) {
             element.innerHTML = value;
+        }
+    });
+
+    document.querySelectorAll('[data-i18n-target]').forEach((element) => {
+        const key = element.dataset.i18nTarget;
+        const value = key ? translate(key) : undefined;
+        if (value !== undefined) {
+            element.setAttribute('content', value);
         }
     });
 
@@ -1752,7 +1822,7 @@ function renderSummary() {
     const extras = Array.from(extrasForm.querySelectorAll('input[name="extra"]:checked'));
     const total = extras.reduce((sum, item) => sum + Number(item.dataset.price || 0), basePrice);
     const listEl = document.getElementById('extras-list');
-    const totalEl = document.getElementById('extras-total');
+    const totalEl = document.querySelector('[data-extras-total]') || document.getElementById('extras-total');
 
     if (listEl) {
         if (extras.length) {
@@ -1767,6 +1837,7 @@ function renderSummary() {
 
     if (totalEl) {
         totalEl.textContent = formatCurrency(total);
+        totalEl.setAttribute('data-amount', String(total));
     }
 }
 
