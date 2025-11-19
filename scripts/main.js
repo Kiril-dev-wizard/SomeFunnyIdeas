@@ -1856,6 +1856,14 @@ function setDetailState(targetId, state) {
     }
 }
 
+function rememberDetailScrollPosition(triggerElement, targetId) {
+    if (!triggerElement || !targetId) return;
+    const reference = triggerElement.closest('.service-card') || triggerElement;
+    const rect = reference.getBoundingClientRect();
+    const scrollTop = window.scrollY + rect.top - 16;
+    detailScrollPositions.set(targetId, Math.max(0, scrollTop));
+}
+
 function handleDetailToggle(button) {
     if (!button) return;
     const targetId = button.dataset.detailTarget;
@@ -1863,8 +1871,7 @@ function handleDetailToggle(button) {
     const target = document.getElementById(targetId);
     const nextState = target ? target.hidden : true;
     if (nextState && target) {
-        const scrollPosition = window.scrollY + button.getBoundingClientRect().top;
-        detailScrollPositions.set(targetId, scrollPosition);
+        rememberDetailScrollPosition(button, targetId);
     }
     setDetailState(targetId, nextState);
     if (!nextState) {
@@ -1970,6 +1977,7 @@ detailToggles.forEach((button) => {
 detailCloseButtons.forEach((button) => {
     button.addEventListener('click', () => {
         const targetId = button.dataset.detailClose;
+        rememberDetailScrollPosition(button, targetId);
         setDetailState(targetId, false);
         restoreDetailScroll(targetId);
     });
