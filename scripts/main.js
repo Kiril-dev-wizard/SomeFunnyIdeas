@@ -1527,6 +1527,7 @@ const langSwitcher = document.querySelector('[data-lang-switcher]');
 const localeField = document.querySelector('[data-locale-field]');
 const detailToggles = document.querySelectorAll('[data-detail-toggle]');
 const detailCloseButtons = document.querySelectorAll('[data-detail-close]');
+const detailScrollPositions = new Map();
 const formModal = document.querySelector('[data-form-modal]');
 const formModalText = document.querySelector('[data-form-modal-text]');
 const formModalClose = document.querySelector('[data-form-modal-close]');
@@ -1861,7 +1862,23 @@ function handleDetailToggle(button) {
     if (!targetId) return;
     const target = document.getElementById(targetId);
     const nextState = target ? target.hidden : true;
+    if (nextState && target) {
+        const scrollPosition = window.scrollY + button.getBoundingClientRect().top;
+        detailScrollPositions.set(targetId, scrollPosition);
+    }
     setDetailState(targetId, nextState);
+    if (!nextState) {
+        restoreDetailScroll(targetId);
+    }
+}
+
+function restoreDetailScroll(targetId) {
+    if (!targetId) return;
+    const storedPosition = detailScrollPositions.get(targetId);
+    if (typeof storedPosition === 'number' && Number.isFinite(storedPosition)) {
+        window.scrollTo({ top: Math.max(0, storedPosition), behavior: 'smooth' });
+        detailScrollPositions.delete(targetId);
+    }
 }
 
 function showInlineError() {
@@ -1954,6 +1971,7 @@ detailCloseButtons.forEach((button) => {
     button.addEventListener('click', () => {
         const targetId = button.dataset.detailClose;
         setDetailState(targetId, false);
+        restoreDetailScroll(targetId);
     });
 });
 
