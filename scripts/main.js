@@ -52,6 +52,10 @@ const translations = {
         },
         services: {
             title: 'Услуги и форматы',
+            carousel: {
+                prev: 'Назад',
+                next: 'Вперёд'
+            },
             actions: {
                 more: 'Подробнее',
                 less: 'Скрыть'
@@ -428,6 +432,10 @@ const translations = {
         },
         services: {
             title: 'Послуги та формати',
+            carousel: {
+                prev: 'Назад',
+                next: 'Вперед'
+            },
             actions: {
                 more: 'Докладніше',
                 less: 'Згорнути'
@@ -802,6 +810,10 @@ const translations = {
         },
         services: {
             title: 'Usługi i formaty',
+            carousel: {
+                prev: 'Wstecz',
+                next: 'Dalej'
+            },
             actions: {
                 more: 'Więcej',
                 less: 'Mniej'
@@ -1176,6 +1188,10 @@ const translations = {
         },
         services: {
             title: 'Services & formats',
+            carousel: {
+                prev: 'Previous',
+                next: 'Next'
+            },
             actions: {
                 more: 'Read more',
                 less: 'Hide details'
@@ -1532,6 +1548,7 @@ const formModal = document.querySelector('[data-form-modal]');
 const formModalText = document.querySelector('[data-form-modal-text]');
 const formModalClose = document.querySelector('[data-form-modal-close]');
 const formModalOverlay = document.querySelector('[data-form-modal-overlay]');
+let refreshCarouselPosition = null;
 
 window.addEventListener('load', () => {
     hidePreloader();
@@ -1605,6 +1622,92 @@ function initGsapAnimations() {
             });
         });
     }
+}
+
+function initServicesCarousel() {
+    const carousel = document.querySelector('[data-services-carousel]');
+    if (!carousel) {
+        refreshCarouselPosition = null;
+        return;
+    }
+    const viewport = carousel.querySelector('[data-carousel-viewport]');
+    const slides = viewport ? Array.from(carousel.querySelectorAll('[data-service-card]')) : [];
+    if (!viewport || slides.length === 0) {
+        refreshCarouselPosition = null;
+        return;
+    }
+    const prevButton = carousel.querySelector('[data-carousel-prev]');
+    const nextButton = carousel.querySelector('[data-carousel-next]');
+    let currentIndex = 0;
+    let scrollAnimationFrame = null;
+
+    const setNavState = () => {
+        const disabled = slides.length <= 1;
+        if (prevButton) {
+            prevButton.disabled = disabled;
+        }
+        if (nextButton) {
+            nextButton.disabled = disabled;
+        }
+    };
+
+    const updateSlideClasses = () => {
+        slides.forEach((slide, index) => {
+            slide.classList.toggle('is-active', index === currentIndex);
+            slide.classList.toggle('is-prev', index === currentIndex - 1);
+            slide.classList.toggle('is-next', index === currentIndex + 1);
+        });
+    };
+
+    const scrollToIndex = (index, behavior = 'smooth') => {
+        if (!slides.length) return;
+        currentIndex = (index + slides.length) % slides.length;
+        const targetSlide = slides[currentIndex];
+        const viewportCenter = viewport.offsetWidth / 2;
+        const slideCenter = targetSlide.offsetLeft + targetSlide.offsetWidth / 2;
+        const left = Math.max(0, slideCenter - viewportCenter);
+        viewport.scrollTo({ left, behavior });
+        updateSlideClasses();
+    };
+
+    const detectClosestSlide = () => {
+        const viewportCenter = viewport.scrollLeft + viewport.offsetWidth / 2;
+        let closestIndex = currentIndex;
+        let smallestDistance = Number.POSITIVE_INFINITY;
+        slides.forEach((slide, index) => {
+            const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+            const distance = Math.abs(slideCenter - viewportCenter);
+            if (distance < smallestDistance) {
+                smallestDistance = distance;
+                closestIndex = index;
+            }
+        });
+        if (closestIndex !== currentIndex) {
+            currentIndex = closestIndex;
+            updateSlideClasses();
+        }
+    };
+
+    const handleScroll = () => {
+        if (scrollAnimationFrame) {
+            cancelAnimationFrame(scrollAnimationFrame);
+        }
+        scrollAnimationFrame = requestAnimationFrame(detectClosestSlide);
+    };
+
+    viewport.addEventListener('scroll', handleScroll);
+    prevButton?.addEventListener('click', () => scrollToIndex(currentIndex - 1));
+    nextButton?.addEventListener('click', () => scrollToIndex(currentIndex + 1));
+
+    window.addEventListener('resize', () => {
+        scrollToIndex(currentIndex, 'auto');
+    });
+
+    refreshCarouselPosition = () => scrollToIndex(currentIndex, 'auto');
+
+    setNavState();
+    updateSlideClasses();
+    scrollToIndex(0, 'auto');
 }
 
 function updateLocaleIndicator(locale) {
@@ -1764,6 +1867,9 @@ function applyTranslations(locale) {
     updateSchema(currentLocale);
     updateThemeControls(document.body.dataset.theme === 'dark' ? 'dark' : 'light');
     renderSummary();
+    if (typeof refreshCarouselPosition === 'function') {
+        refreshCarouselPosition();
+    }
 }
 
 function getStoredTheme() {
@@ -1969,6 +2075,7 @@ applyTranslations(initialLocale);
 
 const initialTheme = getPreferredTheme();
 applyTheme(initialTheme);
+initServicesCarousel();
 
 detailToggles.forEach((button) => {
     button.addEventListener('click', () => handleDetailToggle(button));

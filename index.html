@@ -165,8 +165,13 @@
         <section class="section section--muted py-24 lg:py-32" id="services">
             <div class="container stack mx-auto flex flex-col gap-12 px-3 sm:px-4 lg:px-8">
                 <h2 class="section__title section__title--center text-center" data-i18n="services.title">Услуги и форматы</h2>
-                <div class="services-grid grid gap-8 xl:grid-cols-2">
-                    <article class="service-card service-card--highlight grid gap-5" id="natal">
+                <div class="services-carousel" data-services-carousel>
+                    <button class="carousel-nav carousel-nav--prev" type="button" data-carousel-prev aria-label="Назад" data-i18n-attr-aria-label="services.carousel.prev">
+                        <span aria-hidden="true">&#8592;</span>
+                    </button>
+                    <div class="services-carousel__viewport" data-carousel-viewport>
+                        <div class="services-carousel__track" data-carousel-track>
+                            <article class="service-card service-card--highlight grid gap-5" id="natal" data-service-card>
                         <div class="service-card__header flex flex-col gap-2">
                             <h3 data-i18n="services.natal.title">Базовый разбор натальной карты</h3>
                             <span class="price-tag" data-i18n="services.natal.price">80&nbsp;$</span>
@@ -218,9 +223,9 @@
                             <div class="service-card__details-content" data-i18n="services.natal.details"></div>
                             <button class="detail-close" type="button" data-detail-close="natal-details" data-i18n="services.actions.less">Скрыть</button>
                         </div>
-                    </article>
+                            </article>
 
-                    <article class="service-card grid gap-5" id="forecast">
+                            <article class="service-card grid gap-5" id="forecast" data-service-card>
                         <div class="service-card__header flex flex-col gap-2">
                             <h3 data-i18n="services.forecast.title">Персональный прогноз на год</h3>
                             <span class="price-tag price-tag--discount">
@@ -253,9 +258,9 @@
                             <button class="detail-close" type="button" data-detail-close="forecast-details" data-i18n="services.actions.less">Скрыть</button>
                         </div>
                         <a class="btn btn--ghost" href="#contact" data-i18n="services.forecast.cta">Получить прогноз</a>
-                    </article>
+                            </article>
 
-                    <article class="service-card grid gap-5" id="rituals">
+                            <article class="service-card grid gap-5" id="rituals" data-service-card>
                         <div class="service-card__header flex flex-col gap-2">
                             <h3 data-i18n="services.rituals.title">Ритуалы на заказ</h3>
                             <span class="price-tag" data-i18n="services.rituals.price">60&nbsp;$</span>
@@ -278,9 +283,9 @@
                             <button class="detail-close" type="button" data-detail-close="rituals-details" data-i18n="services.actions.less">Скрыть</button>
                         </div>
                         <a class="btn btn--ghost" href="#contact" data-i18n="services.rituals.cta">Обсудить ритуал</a>
-                    </article>
+                            </article>
 
-                    <article class="service-card" id="runes">
+                            <article class="service-card" id="runes" data-service-card>
                         <div class="service-card__header">
                             <h3 data-i18n="services.runes.title">Консультация на рунах</h3>
                             <span class="price-tag" data-i18n="services.runes.price">30&nbsp;$/час</span>
@@ -302,7 +307,12 @@
                             <button class="detail-close" type="button" data-detail-close="runes-details" data-i18n="services.actions.less">Скрыть</button>
                         </div>
                         <a class="btn btn--ghost" href="#contact" data-i18n="services.runes.cta">Записаться на звонок</a>
-                    </article>
+                            </article>
+                        </div>
+                    </div>
+                    <button class="carousel-nav carousel-nav--next" type="button" data-carousel-next aria-label="Вперёд" data-i18n-attr-aria-label="services.carousel.next">
+                        <span aria-hidden="true">&#8594;</span>
+                    </button>
                 </div>
             </div>
         </section>
