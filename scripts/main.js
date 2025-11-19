@@ -1547,12 +1547,15 @@ const langSwitcher = document.querySelector('[data-lang-switcher]');
 const localeField = document.querySelector('[data-locale-field]');
 const detailToggles = document.querySelectorAll('[data-detail-toggle]');
 const detailCloseButtons = document.querySelectorAll('[data-detail-close]');
+const detailPanel = document.querySelector('[data-detail-panel]');
+const detailPanelContent = document.querySelector('[data-detail-panel-content]');
 const detailScrollPositions = new Map();
 const formModal = document.querySelector('[data-form-modal]');
 const formModalText = document.querySelector('[data-form-modal-text]');
 const formModalClose = document.querySelector('[data-form-modal-close]');
 const formModalOverlay = document.querySelector('[data-form-modal-overlay]');
 let refreshCarouselPosition = null;
+let activeDetailId = null;
 
 window.addEventListener('load', () => {
     hidePreloader();
@@ -1871,6 +1874,9 @@ function applyTranslations(locale) {
     updateSchema(currentLocale);
     updateThemeControls(document.body.dataset.theme === 'dark' ? 'dark' : 'light');
     renderSummary();
+    if (activeDetailId && detailPanel && !detailPanel.hidden) {
+        setDetailState(activeDetailId, true);
+    }
     if (typeof refreshCarouselPosition === 'function') {
         refreshCarouselPosition();
     }
@@ -1953,17 +1959,54 @@ function renderSummary() {
 }
 
 function setDetailState(targetId, state) {
-    if (!targetId) return;
-    const target = document.getElementById(targetId);
-    if (!target) return;
-    const toggleButton = document.querySelector(`[data-detail-target="${targetId}"]`);
-    const shouldOpen = typeof state === 'boolean' ? state : target.hidden;
-    target.hidden = !shouldOpen;
-    target.classList.toggle('is-open', shouldOpen);
-    if (toggleButton) {
-        toggleButton.setAttribute('aria-expanded', String(shouldOpen));
-        toggleButton.classList.toggle('is-hidden', shouldOpen);
+    if (!detailPanel || !detailPanelContent) return;
+    const target = targetId ? document.getElementById(targetId) : null;
+    const shouldOpen = typeof state === 'boolean' ? state : activeDetailId !== targetId;
+
+    if (shouldOpen) {
+        if (!target) return;
+        if (activeDetailId && activeDetailId !== targetId) {
+            const previousToggle = document.querySelector(`[data-detail-target="${activeDetailId}"]`);
+            previousToggle?.classList.remove('is-hidden');
+            previousToggle?.setAttribute('aria-expanded', 'false');
+        }
+        detailPanelContent.innerHTML = target.innerHTML;
+        detailPanel.dataset.openTarget = targetId;
+        detailPanel.hidden = false;
+        requestAnimationFrame(() => detailPanel.classList.add('is-visible'));
+        activeDetailId = targetId;
+
+        const toggleButton = document.querySelector(`[data-detail-target="${targetId}"]`);
+        if (toggleButton) {
+            toggleButton.setAttribute('aria-expanded', 'true');
+            toggleButton.classList.add('is-hidden');
+        }
+
+        scrollDetailPanelIntoView();
+    } else {
+        const closeTarget = targetId || activeDetailId;
+        detailPanel.classList.remove('is-visible');
+        setTimeout(() => {
+            detailPanel.hidden = true;
+            detailPanelContent.innerHTML = '';
+            detailPanel.removeAttribute('data-open-target');
+        }, 180);
+        if (closeTarget) {
+            const toggleButton = document.querySelector(`[data-detail-target="${closeTarget}"]`);
+            if (toggleButton) {
+                toggleButton.setAttribute('aria-expanded', 'false');
+                toggleButton.classList.remove('is-hidden');
+            }
+        }
+        activeDetailId = null;
     }
+}
+
+function scrollDetailPanelIntoView() {
+    if (!detailPanel) return;
+    const rect = detailPanel.getBoundingClientRect();
+    const offset = window.scrollY + rect.top - 12;
+    window.scrollTo({ top: Math.max(0, offset), behavior: 'smooth' });
 }
 
 function rememberDetailScrollPosition(triggerElement, targetId) {
@@ -1978,13 +2021,12 @@ function handleDetailToggle(button) {
     if (!button) return;
     const targetId = button.dataset.detailTarget;
     if (!targetId) return;
-    const target = document.getElementById(targetId);
-    const nextState = target ? target.hidden : true;
-    if (nextState && target) {
+    const willOpen = activeDetailId !== targetId || detailPanel?.hidden;
+    if (willOpen) {
         rememberDetailScrollPosition(button, targetId);
     }
-    setDetailState(targetId, nextState);
-    if (!nextState) {
+    setDetailState(targetId, willOpen);
+    if (!willOpen) {
         restoreDetailScroll(targetId);
     }
 }
@@ -2093,6 +2135,17 @@ detailCloseButtons.forEach((button) => {
         restoreDetailScroll(targetId);
     });
 });
+
+if (detailPanel) {
+    detailPanel.addEventListener('click', (event) => {
+        const closeButton = event.target.closest('[data-detail-close], [data-detail-panel-close]');
+        if (closeButton) {
+            const targetId = detailPanel.dataset.openTarget || activeDetailId;
+            setDetailState(targetId, false);
+            restoreDetailScroll(targetId);
+        }
+    });
+}
 
 [formModalClose, formModalOverlay].forEach((element) => {
     if (!element) return;
