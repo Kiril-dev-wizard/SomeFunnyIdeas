@@ -1601,14 +1601,22 @@ function initGsapAnimations() {
     if (window.ScrollTrigger) {
         gsapInstance.registerPlugin(window.ScrollTrigger);
     }
-    const timeline = gsapInstance.timeline({ defaults: { duration: 1.1, ease: 'power3.out' } });
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobileViewport = window.innerWidth < 640;
+    const enableParallax = !prefersReducedMotion && !isMobileViewport;
+
+    if (gsapInstance.ticker && typeof gsapInstance.ticker.lagSmoothing === 'function') {
+        gsapInstance.ticker.lagSmoothing(500, 16);
+    }
+
+    const timeline = gsapInstance.timeline({ defaults: { duration: isMobileViewport ? 0.85 : 1.1, ease: 'power3.out' } });
     timeline
         .from('.hero__tag', { opacity: 0, y: 20 })
         .from('.hero__title', { opacity: 0, y: 40 }, 0.1)
         .from('.hero__subtitle', { opacity: 0, y: 30 }, 0.2)
         .from('.hero__cta .btn', { opacity: 0, y: 20, stagger: 0.1 }, 0.4);
 
-    if (window.ScrollTrigger) {
+    if (enableParallax && window.ScrollTrigger) {
         parallaxElements.forEach((element) => {
             const depth = Number(element.dataset.depth || 0.2);
             gsapInstance.to(element, {
@@ -1621,6 +1629,10 @@ function initGsapAnimations() {
                 }
             });
         });
+    } else if (!enableParallax) {
+        parallaxElements.forEach((element) => {
+            element.style.transform = 'translate3d(0,0,0)';
+        });
     }
 }
 
@@ -1632,6 +1644,7 @@ function initServicesCarousel() {
     }
     const viewport = carousel.querySelector('[data-carousel-viewport]');
     const slides = viewport ? Array.from(carousel.querySelectorAll('[data-service-card]')) : [];
+    const dotsContainer = carousel.querySelector('[data-carousel-dots]');
     if (!viewport || slides.length === 0) {
         refreshCarouselPosition = null;
         return;
@@ -1640,6 +1653,8 @@ function initServicesCarousel() {
     const nextButton = carousel.querySelector('[data-carousel-next]');
     let currentIndex = 0;
     let scrollAnimationFrame = null;
+    let snapTimeout = null;
+    let hintPlayed = false;
 
     const setNavState = () => {
         const disabled = slides.length <= 1;
@@ -1651,14 +1666,6 @@ function initServicesCarousel() {
         }
     };
 
-    const updateSlideClasses = () => {
-        slides.forEach((slide, index) => {
-            slide.classList.toggle('is-active', index === currentIndex);
-            slide.classList.toggle('is-prev', index === currentIndex - 1);
-            slide.classList.toggle('is-next', index === currentIndex + 1);
-        });
-    };
-
     const scrollToIndex = (index, behavior = 'smooth') => {
         if (!slides.length) return;
         currentIndex = (index + slides.length) % slides.length;
@@ -1668,6 +1675,37 @@ function initServicesCarousel() {
         const left = Math.max(0, slideCenter - viewportCenter);
         viewport.scrollTo({ left, behavior });
         updateSlideClasses();
+    };
+
+    if (dotsContainer) {
+        dotsContainer.innerHTML = '';
+    }
+
+    const dots = dotsContainer
+        ? slides.map((_, index) => {
+              const dot = document.createElement('button');
+              dot.type = 'button';
+              dot.dataset.carouselDot = String(index);
+              dot.setAttribute('aria-label', `${index + 1}`);
+              dotsContainer.appendChild(dot);
+              dot.addEventListener('click', () => scrollToIndex(index));
+              return dot;
+          })
+        : [];
+
+    const updateDots = () => {
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('is-active', index === currentIndex);
+        });
+    };
+
+    const updateSlideClasses = () => {
+        slides.forEach((slide, index) => {
+            slide.classList.toggle('is-active', index === currentIndex);
+            slide.classList.toggle('is-prev', index === currentIndex - 1);
+            slide.classList.toggle('is-next', index === currentIndex + 1);
+        });
+        updateDots();
     };
 
     const detectClosestSlide = () => {
@@ -1688,6 +1726,23 @@ function initServicesCarousel() {
         }
     };
 
+    const settleScroll = () => {
+        if (snapTimeout) {
+            clearTimeout(snapTimeout);
+        }
+        snapTimeout = window.setTimeout(() => scrollToIndex(currentIndex), 160);
+    };
+
+    const playHint = () => {
+        if (hintPlayed || slides.length < 2) return;
+        hintPlayed = true;
+        const distance = Math.min(80, slides[0].offsetWidth * 0.18);
+        setTimeout(() => {
+            viewport.scrollBy({ left: distance, behavior: 'smooth' });
+            setTimeout(() => viewport.scrollBy({ left: -distance, behavior: 'smooth' }), 380);
+        }, 260);
+    };
+
     const handleScroll = () => {
         if (scrollAnimationFrame) {
             cancelAnimationFrame(scrollAnimationFrame);
@@ -1696,6 +1751,8 @@ function initServicesCarousel() {
     };
 
     viewport.addEventListener('scroll', handleScroll);
+    viewport.addEventListener('touchend', settleScroll);
+    viewport.addEventListener('mouseup', settleScroll);
     prevButton?.addEventListener('click', () => scrollToIndex(currentIndex - 1));
     nextButton?.addEventListener('click', () => scrollToIndex(currentIndex + 1));
 
@@ -1708,6 +1765,7 @@ function initServicesCarousel() {
     setNavState();
     updateSlideClasses();
     scrollToIndex(0, 'auto');
+    playHint();
 }
 
 function updateLocaleIndicator(locale) {
@@ -1953,9 +2011,56 @@ function setDetailState(targetId, state) {
     const target = document.getElementById(targetId);
     if (!target) return;
     const toggleButton = document.querySelector(`[data-detail-target="${targetId}"]`);
+    const isCurrentlyOpen = !target.hidden && target.classList.contains('is-open');
     const shouldOpen = typeof state === 'boolean' ? state : target.hidden;
-    target.hidden = !shouldOpen;
-    target.classList.toggle('is-open', shouldOpen);
+
+    if (shouldOpen === isCurrentlyOpen) {
+        return;
+    }
+
+    const animateOpen = () => {
+        target.hidden = false;
+        const contentHeight = target.scrollHeight;
+        target.style.maxHeight = '0px';
+        target.style.opacity = '0';
+        requestAnimationFrame(() => {
+            target.classList.add('is-transitioning');
+            target.classList.add('is-open');
+            target.style.maxHeight = `${contentHeight}px`;
+            target.style.opacity = '1';
+        });
+        const handleOpenEnd = () => {
+            target.style.maxHeight = 'none';
+            target.classList.remove('is-transitioning');
+            target.removeEventListener('transitionend', handleOpenEnd);
+        };
+        target.addEventListener('transitionend', handleOpenEnd);
+    };
+
+    const animateClose = () => {
+        const currentHeight = target.scrollHeight;
+        target.style.maxHeight = `${currentHeight}px`;
+        requestAnimationFrame(() => {
+            target.classList.add('is-transitioning');
+            target.classList.remove('is-open');
+            target.style.opacity = '0';
+            target.style.maxHeight = '0px';
+        });
+        const handleCloseEnd = () => {
+            target.hidden = true;
+            target.classList.remove('is-transitioning');
+            target.style.maxHeight = '';
+            target.removeEventListener('transitionend', handleCloseEnd);
+        };
+        target.addEventListener('transitionend', handleCloseEnd);
+    };
+
+    if (shouldOpen) {
+        animateOpen();
+    } else {
+        animateClose();
+    }
+
     if (toggleButton) {
         toggleButton.setAttribute('aria-expanded', String(shouldOpen));
         toggleButton.classList.toggle('is-hidden', shouldOpen);
@@ -1964,7 +2069,11 @@ function setDetailState(targetId, state) {
 
 function rememberDetailScrollPosition(triggerElement, targetId) {
     if (!triggerElement || !targetId) return;
-    const reference = triggerElement.closest('.service-card') || triggerElement;
+    let reference = triggerElement.closest('.service-card');
+    if (!reference) {
+        const relatedToggle = document.querySelector(`[data-detail-target="${targetId}"]`);
+        reference = relatedToggle?.closest('.service-card') || relatedToggle || triggerElement;
+    }
     const rect = reference.getBoundingClientRect();
     const scrollTop = window.scrollY + rect.top - 16;
     detailScrollPositions.set(targetId, Math.max(0, scrollTop));

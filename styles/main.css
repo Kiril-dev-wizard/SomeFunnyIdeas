@@ -35,8 +35,8 @@ body[data-theme="light"] {
     --bg-muted: #ece9ff;
     --surface: rgba(255, 255, 255, 0.96);
     --surface-alt: rgba(141, 83, 255, 0.08);
-    --text: #0d0622;
-    --text-muted: rgba(13, 6, 34, 0.65);
+    --text: #0a0720;
+    --text-muted: rgba(18, 12, 40, 0.72);
     --accent: #8d53ff;
     --accent-strong: #5e2fdc;
     --accent-soft: rgba(141, 83, 255, 0.18);
@@ -526,9 +526,14 @@ img {
 .services-carousel__viewport {
     flex: 1;
     overflow-x: auto;
-    padding: 0 4vw;
+    padding: 0 12px;
     scroll-behavior: smooth;
     position: relative;
+    scroll-snap-type: x mandatory;
+    scroll-snap-stop: always;
+    scroll-padding-inline: clamp(18px, 4vw, 48px);
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
 }
 
 .services-carousel__viewport::-webkit-scrollbar {
@@ -558,10 +563,8 @@ img {
 
 .services-carousel__track {
     display: flex;
-    gap: clamp(16px, 3vw, 32px);
-    padding: 16px max(24px, calc((100vw - 560px) / 2)) 32px;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: max(24px, calc((100vw - 560px) / 2));
+    gap: clamp(14px, 3vw, 24px);
+    padding: 20px clamp(18px, 5vw, 64px) 28px;
 }
 
 .carousel-nav {
@@ -588,6 +591,31 @@ img {
     pointer-events: none;
 }
 
+.services-carousel__dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: -6px;
+    padding-bottom: 4px;
+}
+
+.services-carousel__dots button {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    border: 1px solid var(--outline);
+    background: var(--surface-alt);
+    opacity: 0.6;
+    transition: transform var(--transition-base), opacity var(--transition-base), background var(--transition-base);
+}
+
+.services-carousel__dots button.is-active {
+    opacity: 1;
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: scale(1.05);
+}
+
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -604,13 +632,13 @@ img {
     gap: 16px;
     position: relative;
     width: 100%;
-    flex: 0 0 86%;
-    max-width: 560px;
+    flex: 0 0 88%;
+    max-width: 640px;
     scroll-snap-align: center;
-    opacity: 0.35;
-    transform: scale(0.92);
-    filter: saturate(0.8);
-    transition: transform 0.45s ease, opacity 0.45s ease, filter 0.45s ease;
+    opacity: 0.5;
+    transform: scale(0.95);
+    filter: saturate(0.9);
+    transition: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease;
 }
 
 @media (min-width: 768px) {
@@ -621,7 +649,7 @@ img {
 
 @media (min-width: 1200px) {
     .service-card {
-        flex-basis: 55%;
+        flex-basis: 58%;
     }
 }
 
@@ -635,6 +663,7 @@ img {
 .service-card.is-next {
     opacity: 0.65;
     filter: saturate(1);
+    transform: scale(0.97);
 }
 
 .service-card--highlight {
@@ -838,39 +867,48 @@ img {
 }
 
 
-.service-card__details {
-    margin-top: 8px;
+.service-details {
+    display: grid;
+    gap: 12px;
+    width: 100%;
+}
+
+.service-details__panel {
+    margin: 0;
     padding: 0;
-    border-radius: 0;
-    border: 0;
-    background: transparent;
-    display: none;
+    border-radius: 20px;
+    border: 1px solid var(--card-border);
+    background: var(--surface);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform-origin: top;
+    transition: max-height 0.35s ease, opacity 0.22s ease;
 }
 
-.service-card__details.is-open,
-.service-card__details:not([hidden]) {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
+.service-details__panel.is-open,
+.service-details__panel:not([hidden]) {
+    opacity: 1;
 }
 
-.service-card__details-content {
+.service-details__content {
     display: block;
     font-size: 15px;
     line-height: 1.4;
     color: var(--text-muted);
+    padding: 18px 16px 8px;
 }
 
-.service-card__details-content p {
+.service-details__content p {
     margin: 0 0 8px;
 }
 
-.service-card__details-content ul {
+.service-details__content ul {
     padding-left: 18px;
     margin: 0 0 12px;
 }
 
-.service-card__details-content li + li {
+.service-details__content li + li {
     margin-top: 4px;
 }
 
