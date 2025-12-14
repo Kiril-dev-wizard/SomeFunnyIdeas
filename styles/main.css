@@ -36,14 +36,14 @@ body[data-theme="light"] {
     --surface: rgba(255, 255, 255, 0.96);
     --surface-alt: rgba(141, 83, 255, 0.08);
     --text: #0b0720;
-    --text-muted: rgba(13, 6, 34, 0.72);
+    --text-muted: #4a4a52;
     --accent: #8d53ff;
     --accent-strong: #5e2fdc;
     --accent-soft: rgba(141, 83, 255, 0.18);
     --accent-contrast: #120826;
     --secondary: #5e7dff;
-    --outline: rgba(141, 83, 255, 0.25);
-    --card-border: rgba(13, 13, 15, 0.1);
+    --outline: rgba(141, 83, 255, 0.35);
+    --card-border: rgba(13, 13, 15, 0.15);
     --shadow: 0 40px 80px rgba(45, 33, 90, 0.14);
     --hero-gradient: radial-gradient(circle at 50% 0%, rgba(141, 83, 255, 0.18), transparent 50%),
         radial-gradient(circle at 0% 50%, rgba(160, 160, 255, 0.12), transparent 55%);
@@ -296,7 +296,7 @@ img {
 .lang-switcher__menu button:hover {
     background: var(--accent-soft);
 }
-}
+
 
 
 .hero__tag {
@@ -381,10 +381,13 @@ img {
 }
 
 @keyframes orbPulse {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(0.95);
         opacity: 0.5;
     }
+
     50% {
         transform: scale(1.05);
         opacity: 0.9;
@@ -392,9 +395,12 @@ img {
 }
 
 @keyframes orbDrift {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translate3d(-4%, -2%, 0);
     }
+
     50% {
         transform: translate3d(4%, 6%, 0);
     }
@@ -564,6 +570,27 @@ img {
     background: linear-gradient(270deg, var(--bg), transparent);
 }
 
+@media (min-width: 1024px) {
+
+    .services-carousel__viewport::before,
+    .services-carousel__viewport::after {
+        display: none;
+    }
+
+    .services-carousel__viewport {
+        overflow: visible;
+        padding: 0;
+    }
+
+    .services-carousel__track {
+        display: grid;
+        /* Fallback if utility class fails */
+        gap: 2rem;
+        padding: 0;
+        scroll-snap-type: none;
+    }
+}
+
 .services-carousel__track {
     display: flex;
     gap: clamp(16px, 3vw, 32px);
@@ -572,14 +599,95 @@ img {
     scroll-padding-inline: clamp(20px, 4vw, 40px);
 }
 
-@media (max-width: 767px) {
+/* Mobile Accordion Logic */
+@media (max-width: 1023px) {
+    .services-carousel {
+        display: block;
+    }
+
     .services-carousel__viewport {
+        overflow: visible;
+        padding: 0;
         width: 100%;
-        padding-inline: 12px;
+    }
+
+    .services-carousel__viewport::before,
+    .services-carousel__viewport::after {
+        display: none;
     }
 
     .services-carousel__track {
-        padding-inline: 12px;
+        display: flex;
+        /* or flex */
+        flex-direction: column;
+        gap: 16px;
+        padding: 0;
+    }
+
+    .service-card {
+        width: 100%;
+        min-width: 0;
+        max-width: none;
+        flex-shrink: 1;
+
+        display: grid;
+        /* When collapsed, we only want header. But we hide others. */
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    .service-card:hover {
+        background-color: var(--surface-alt);
+    }
+
+    /* Smooth Accordion Logic */
+    .service-card__content {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.3s ease-out;
+    }
+
+    .service-card__content>div {
+        overflow: hidden;
+        min-height: 0;
+        /* Re-apply gap inside the wrapper for mobile layout */
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .service-card.is-expanded .service-card__content {
+        grid-template-rows: 1fr;
+    }
+
+    /* Chevron rotation */
+    .service-card__header {
+        position: relative;
+        padding-right: 32px;
+        cursor: pointer;
+    }
+
+    .service-card__header::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%) rotate(0deg);
+        width: 24px;
+        height: 24px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238d53ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: center;
+        transition: transform 0.3s ease;
+    }
+
+    .service-card.is-expanded .service-card__header::after {
+        transform: translateY(-50%) rotate(180deg);
+    }
+
+    /* Hide carousel dots */
+    .carousel-dots {
+        display: none;
     }
 }
 
@@ -605,6 +713,35 @@ img {
     transform: scale(1.05);
 }
 
+@media (min-width: 1024px) {
+    .service-card {
+        flex: 1 1 auto;
+        max-width: none;
+        opacity: 1;
+        transform: none;
+        filter: none;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+        z-index: 10;
+    }
+
+    /* Ensure content is visible on desktop */
+    .service-card__content {
+        display: block;
+    }
+
+    .service-card__content>div {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        /* gap-5 from utility equivalent */
+    }
+}
+
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -621,6 +758,12 @@ img {
     gap: 12px;
     position: relative;
     width: 100%;
+    /* Mobile Accordion: Resetting flex/grid props */
+    /* min-width: clamp(280px, 85vw, 380px); Removed */
+    /* flex-shrink: 0; Removed */
+    scroll-snap-align: none;
+    /* Ensure snaps nicely */
+
     flex: 0 0 90%;
     max-width: 600px;
     scroll-snap-align: center;
@@ -707,7 +850,7 @@ img {
     line-height: 1.4;
 }
 
-.service-card__list li + li {
+.service-card__list li+li {
     margin-top: 4px;
 }
 
@@ -887,7 +1030,7 @@ img {
     margin: 0 0 10px;
 }
 
-.service-card__details-content li + li {
+.service-card__details-content li+li {
     margin-top: 4px;
 }
 
@@ -988,7 +1131,7 @@ img {
     padding: 0;
 }
 
-.detail-block ul li + li {
+.detail-block ul li+li {
     margin-top: 4px;
 }
 
@@ -1196,11 +1339,13 @@ img {
 }
 
 @keyframes preloaderPulse {
+
     0%,
     100% {
         transform: scale(0.9);
         opacity: 0.4;
     }
+
     50% {
         transform: scale(1);
         opacity: 1;
@@ -1375,7 +1520,10 @@ img {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
+
+    *,
+    *::before,
+    *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;

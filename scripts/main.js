@@ -1086,14 +1086,64 @@ function initServicesCarousel() {
     });
 
     window.addEventListener('resize', () => {
-        scrollToIndex(currentIndex, 'auto');
+        if (window.innerWidth < 1024) {
+            scrollToIndex(currentIndex, 'auto');
+        } else {
+            // Clean up if needed on desktop, though CSS handles display
+        }
     });
 
-    refreshCarouselPosition = () => scrollToIndex(currentIndex, 'auto');
+    refreshCarouselPosition = () => {
+        if (window.innerWidth < 1024) {
+            scrollToIndex(currentIndex, 'auto')
+        }
+    };
 
     updateSlideClasses();
-    scrollToIndex(0, 'auto');
+    if (window.innerWidth < 1024) {
+        scrollToIndex(0, 'auto');
+    }
 }
+
+// Add resize listener to handle mode switch
+window.addEventListener('resize', () => {
+    // If crossing the breakpoint 1024px
+    // Ideally we could destroy/re-init, but for now CSS handles most visuals.
+    // We just ensure JS doesn't interfere on desktop.
+});
+
+// Mobile Accordion Logic
+function initMobileAccordion() {
+    const cards = document.querySelectorAll('.service-card');
+    cards.forEach(card => {
+        card.addEventListener('click', (e) => {
+            if (window.innerWidth >= 1024) return; // Desktop grid doesn't need accordion
+
+            // Prevent collapsing if clicking inner interactive elements (like buttons) 
+            // unless we want to allow collapsing from anywhere? 
+            // Better to allow collapsing from header, but maybe not from form inputs if any?
+            // The form is inside. If user clicks form input, we shouldn't collapse.
+            if (e.target.closest('button') || e.target.closest('a') || e.target.closest('input') || e.target.closest('label')) {
+                return;
+            }
+
+            // Toggle expansion
+            // Option: Close others? For now, let's keep multiple open allowed, simpler.
+            const wasExpanded = card.classList.contains('is-expanded');
+
+            // Close others if we want "Accordion" style (one open at a time)
+            // cards.forEach(c => c.classList.remove('is-expanded'));
+
+            if (!wasExpanded) {
+                card.classList.add('is-expanded');
+            } else {
+                card.classList.remove('is-expanded');
+            }
+        });
+    });
+}
+
+initMobileAccordion();
 
 function updateLocaleIndicator(locale) {
     if (currentLangIndicator) {
@@ -1434,6 +1484,14 @@ if (contactForm) {
     const formEndpoint = contactForm.getAttribute('action');
     contactForm.addEventListener('submit', async (event) => {
         event.preventDefault();
+
+        // Basic validation check
+        if (!contactForm.checkValidity()) {
+            // Let browser show standard validation or add custom styles
+            contactForm.reportValidity();
+            return;
+        }
+
         hideInlineError();
         if (!formEndpoint) {
             contactForm.submit();
