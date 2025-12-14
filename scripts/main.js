@@ -1014,7 +1014,11 @@ function initGsapAnimations() {
     }
 }
 
+
 function initServicesCarousel() {
+    // Disable carousel logic on mobile (replaced by vertical stack + scroll spy)
+    if (window.innerWidth < 1024) return;
+
     const carousel = document.querySelector('[data-services-carousel]');
     if (!carousel) {
         refreshCarouselPosition = null;
@@ -1144,6 +1148,66 @@ function initMobileAccordion() {
 }
 
 initMobileAccordion();
+
+// Robust Scroll Spy for Mobile Focus
+function initScrollSpy() {
+    // Only run on mobile
+    if (window.innerWidth >= 1024) return;
+
+    const cards = Array.from(document.querySelectorAll('.service-card'));
+    let ticking = false;
+
+    function updateFocus() {
+        if (window.innerWidth >= 1024) return;
+
+        // Focus zone: Top 30% of the viewport (visually pleasing for reading title)
+        const focusZone = window.innerHeight * 0.3;
+
+        let bestCandidate = null;
+        let minDistance = Infinity;
+
+        cards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            // Distance from card top to focus zone
+            const distance = Math.abs(rect.top - focusZone);
+
+            // Candidate must be at least partly visible
+            if (distance < minDistance) {
+                minDistance = distance;
+                bestCandidate = card;
+            }
+        });
+
+        if (bestCandidate) {
+            // Force strict single focus
+            cards.forEach(c => {
+                if (c === bestCandidate) {
+                    if (!c.classList.contains('scroll-focus')) {
+                        c.classList.add('scroll-focus');
+                    }
+                } else {
+                    // Always clear others, even if bestCandidate didn't change
+                    if (c.classList.contains('scroll-focus')) {
+                        c.classList.remove('scroll-focus');
+                    }
+                }
+            });
+        }
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(updateFocus);
+            ticking = true;
+        }
+    }, { passive: true });
+
+    // Initial check
+    setTimeout(updateFocus, 100);
+}
+
+initScrollSpy();
 
 function updateLocaleIndicator(locale) {
     if (currentLangIndicator) {
