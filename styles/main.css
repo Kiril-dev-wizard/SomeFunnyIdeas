@@ -691,26 +691,28 @@ img {
     }
 }
 
-.carousel-dots {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding-bottom: 12px;
-}
+@media (min-width: 1024px) {
+    .carousel-dots {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding-bottom: 12px;
+    }
 
-.carousel-dots button {
-    width: 10px;
-    height: 10px;
-    border-radius: 999px;
-    border: 1px solid var(--outline);
-    background: var(--surface);
-    transition: transform var(--transition-base), background var(--transition-base), border-color var(--transition-base);
-}
+    .carousel-dots button {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        border: 1px solid var(--outline);
+        background: var(--surface);
+        transition: transform var(--transition-base), background var(--transition-base), border-color var(--transition-base);
+    }
 
-.carousel-dots button[aria-pressed="true"] {
-    background: var(--accent);
-    border-color: var(--accent);
-    transform: scale(1.05);
+    .carousel-dots button[aria-pressed="true"] {
+        background: var(--accent);
+        border-color: var(--accent);
+        transform: scale(1.05);
+    }
 }
 
 @media (min-width: 1024px) {
